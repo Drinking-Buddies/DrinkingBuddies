@@ -5,10 +5,10 @@
 ## Features:
 * **Home Page** (This will be the welcoming page for all users, registered or not registered. There will be a button/link that will take users to the login/sign up page where they can register a new account with Drinking Pal or login to an existing account.): 
 Graphics that display some of the previous drinking sessions. Your stats, etc...
-    - [] Two branches: Login user and guest 
-    - [] A list of your friends who are currently online (drinking)
-    - [] There will be an "Add Friends" button accessible to users when they're logged in that will create a pop-up where they can search for friends and add them to their friends list
-    - [] Link to create a new drinking game room page
+- [] Two branches: Login user and guest 
+- [] A list of your friends who are currently online (drinking)
+- [] There will be an "Add Friends" button accessible to users when they're logged in that will create a pop-up where they can search for friends and add them to their friends list
+- [] Link to create a new drinking game room page
 * **Login/Sign Up Page** (This page will allow users to register a new account or sign in to an existing one. They can also sign up and login through Google Sign In if they have a Google account.):
     * This page will allow new users to register for an account and current users to login into their account
     * Required fields for user to sign up for account: name, username, email, password, birthday, phone number, emergency contact number (cannot be your own number), THE USER MUST AGREE TO THE TERMS OF SERVICE.
