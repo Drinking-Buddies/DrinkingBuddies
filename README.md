@@ -23,15 +23,15 @@ Public profile displays username, name, drinking activity, and email (email can 
     - [ ] Displays friends list
     - [ ] Menu to edit weight, height, etc (only visible to self)
     - [ ] Drinking Page (This page is where a lot of the primary functionality of Drinking Pal takes place. It allows users to create rooms and invite other people into the rooms with a URL. Additionally, users can record their drink consumption, access drinking games, and quit when they can no longer drink anymore. This page will provide a warning to users when it sees that their alcohol intake is reaching dangerous levels.):
-    * When you create a room, a link will be generated and all people can access the room by the link. The page displays the room and all the people in it. Also, the amount of their drinks alongside yours. 
-    * Allows the user to record and input the amount of drinks 
-    * we will support some really basic types of drinks - beer, vodka
-    * All people in room can see the amount drank by others
-    * Warn the user if the amount of alcohol consumed is considered dangerous
-    * Use BAC calculations
-    * A button to quit/surrender from drinking to show everyone that you can't drink.
-    * A button to play games, which will lead to the Game Page (If we have time to do it) (maybe can lead to an exterior game page.)
+    - [ ] When you create a room, a link will be generated and all people can access the room by the link. The page displays the room and all the people in it. Also, the amount of their drinks alongside yours. 
+    - [ ] Allows the user to record and input the amount of drinks 
+    - [ ] we will support some really basic types of drinks - beer, vodka
+    - [ ] All people in room can see the amount drank by others
+    - [ ] Warn the user if the amount of alcohol consumed is considered dangerous
+    - [ ] Use BAC calculations
+    - [ ] A button to quit/surrender from drinking to show everyone that you can't drink.
+    - [ ] A button to play games, which will lead to the Game Page (If we have time to do it) (maybe can lead to an exterior game page.)
 * **Game Page** (Users would be redirected to this page from the Drinking page. Here, they can access the drinking games. Once the games are complete, the users will be redirected to the drinking page, which will tell them which users lost the game and thus have to drink.): 
 Different games will be on different pages.
-    * All pages will return to the drinking page with a list of losers who'll drink.
-    * Idea: Dice game, simple card games, etc. (wait for research.)
+    - [ ] All pages will return to the drinking page with a list of losers who'll drink.
+    - [ ] Idea: Dice game, simple card games, etc. (wait for research.)
