@@ -1,0 +1,82 @@
+
+body{
+	white-space: nowrap;
+	margin: 0px;
+}
+
+.navBar{
+	border: 1px solid red;
+	white-space: normal;
+	width: 25%;
+	min-width: 300px;
+	height: 100%;
+	padding: 10px;
+	background: #FFDD2B;
+	display: inline-block;
+	
+	text-align: center;
+}
+
+h1{
+	border: 1px solid red;
+	font-size: 50px;
+}
+
+.dbLogo{
+	border: 1px solid red;
+	width: 80px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.clear{
+	float:clear;
+}
+
+.mainNav{
+	border: 1px solid red;
+	height: auto;
+	width: 100%;
+	text-align: center;
+	padding: 0px;
+	font-size: 30px;
+}
+
+.mainNav a{
+	border: 1px solid red;
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.textBox{
+	width: 90%;
+	margin: 10px;
+	height: 40px;
+}
+
+#loginButton{
+	color: white;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: FFA24C;
+	width: 90%;
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+#loginDiv{
+	border: 1px solid blue;
+	white-space: normal;
+	width: 70%;
+	height: auto;
+	min-width: 800px;
+	display: inline-block;
+	text-align: center;
+	overflow: hidden;
+}
+
+#loginForm{
+	padding: 10px;
+}
