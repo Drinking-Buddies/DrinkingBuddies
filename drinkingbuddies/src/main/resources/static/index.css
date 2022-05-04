@@ -1,0 +1,36 @@
+
+body{
+	white-space: nowrap;
+	margin: 0px;
+}
+
+.navBar{
+	white-space: normal;
+	width: 25%;
+	min-width: 300px;
+	height: 100%;
+	padding: 10px;
+	background: #FFDD2B;
+	display: inline-block;
+	
+	text-align: center;
+}
+
+h1{
+	font-size: 50px;
+}
+
+#loginDiv{
+	white-space: normal;
+	border: 1px solid red;
+	width: 70%;
+	min-width: 800px;
+	display: inline-block;
+	text-align: center;
+	overflow: hidden;
+	padding: 10px;
+}
+
+.clear{
+	float:clear;
+}

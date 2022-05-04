@@ -1,16 +1,32 @@
-<HTML>
+<html>
 <head>
+	<link rel="stylesheet" type="text/css" href="/index.css">
 	<title>Login Page</title>
 </head>
 <body>
-	<h2>${errorMsg}</h2>
-	<form method = "POST">
-		<input type = "text" name = "userID" placeholder = "User ID"/>
+	<div class = "navBar">
+		<h1>DRINKING BUDDIES</h1>
+		<a>Home</a>
 		<br/>
-		<input type = "password" name = "password" placeholder = "Password" />
+		<a>Profile</a>
 		<br/>
-		<button type = "submit">Submit</button>
-	</form>
+		<a>Drink!</a>
+	</div>
+	<div id = "loginDiv">
+		<h2>${errorMsg}</h2>
+		<form method = "POST">
+			<h2>Login</h2>
+			<input class = "textBox" type = "text" name = "userID" placeholder = "User ID"/>
+			<br/>
+			<input type = "password" name = "password" placeholder = "Password" />
+			<br/>
+			<button type = "submit">Login</button>
+			<br/>
+			<button type = "submit">Login with Google</button>
+		</form>
+	</div>
+	<br class="clear">
+	
 	
 </body>
-</HTML>
+</html>
