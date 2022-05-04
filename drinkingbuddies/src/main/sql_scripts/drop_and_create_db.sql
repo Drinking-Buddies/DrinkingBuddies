@@ -20,6 +20,11 @@ CREATE TABLE Users (
     height INT UNSIGNED
 );
 
+CREATE TABLE Past_events (
+	event_id INT AUTO_INCREMENT PRIMARY KEY,
+    start_time DATETIME NOT NULL DEFAULT NOW()
+);
+
 CREATE TABLE Drinking_history (
 	email VARCHAR(50) NOT NULL,
     event_id INT NOT NULL,
@@ -28,20 +33,18 @@ CREATE TABLE Drinking_history (
     FOREIGN KEY (event_id) REFERENCES Past_events(event_id)
 );
 
-CREATE TABLE Past_events (
-	event_id INT AUTO_INCREMENT PRIMARY KEY,
-    start_time DATETIME NOT NULL DEFAULT (GETDATE())
-);
-
 CREATE TABLE Friendships (
+	requester VARCHAR(50) NOT NULL,
+    receiver VARCHAR(50) NOT NULL,
+    pending BOOL NOT NULL DEFAULT TRUE,
     FOREIGN KEY (requester) REFERENCES Users(email),
     FOREIGN KEY (receiver) REFERENCES Users(email)
 );
 
 DROP PROCEDURE if exists NewUser;
 DELIMITER $$
-CREATE PROCEDURE NewUser (IN username VARCHAR(50),
-						  IN email VARCHAR(50),
+CREATE PROCEDURE NewUser (IN email VARCHAR(50),
+                          IN username VARCHAR(50),
 						  IN pass VARCHAR(50),
 						  IN birthday DATE,
 						  IN phone VARCHAR(50),
@@ -49,9 +52,9 @@ CREATE PROCEDURE NewUser (IN username VARCHAR(50),
 						  IN weight INT UNSIGNED,
 						  IN height INT UNSIGNED)
 BEGIN
-	INSERT INTO Users (username, email, pass, birthday, phone, 
+	INSERT INTO Users (email, username, pass, birthday, phone, 
 			emergency_phone, weight, height)
-    VALUES (username, email, pass, birthday, phone, 
+    VALUES (email, username, pass, birthday, phone, 
 			emergency_phone, weight, height);
 END$$
 DELIMITER ;
@@ -68,20 +71,32 @@ DELIMITER ;
 
 DROP PROCEDURE if exists JoinEvent;
 DELIMITER $$
-CREATE PROCEDURE AddCategory (IN email VARCHAR(50),
-							  IN event_id VARCHAR(50))
+CREATE PROCEDURE JoinEvent (IN email VARCHAR(50),
+							IN event_id VARCHAR(50),
+                            IN amount INT)
 BEGIN
-	INSERT INTO Drinking_history (email, event_id)
-    VALUES (email, event_id);
+	INSERT INTO Drinking_history (email, event_id, amount)
+    VALUES (email, event_id, amount);
 END$$
 DELIMITER ;
 
-DROP PROCEDURE if exists AddFriend;
+DROP PROCEDURE if exists FriendRequest;
 DELIMITER $$
-CREATE PROCEDURE AddFriend (IN requester VARCHAR(50),
-							IN receiver VARCHAR(50))
+CREATE PROCEDURE FriendRequest (IN requester VARCHAR(50),
+								IN receiver VARCHAR(50))
 BEGIN
 	INSERT INTO Friendships (requester, receiver)
     VALUES (requester, receiver);
+END$$
+DELIMITER ;
+
+DROP PROCEDURE if exists AcceptFriend;
+DELIMITER $$
+CREATE PROCEDURE AcceptFriend (IN requester VARCHAR(50),
+							   IN receiver VARCHAR(50))
+BEGIN
+	UPDATE Friendships f
+    SET pending = FALSE
+    WHERE f.requester = requester AND f.receiver = receiver;
 END$$
 DELIMITER ;
