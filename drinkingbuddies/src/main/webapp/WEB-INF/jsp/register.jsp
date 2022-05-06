@@ -18,7 +18,7 @@
 			<input class = "textBox" type = "text" name = "userID" placeholder = "User ID" required/>
 			<br/>
 			<input class = "textBox" type = "text" name = "legalName" placeholder = "Your Legal Name" required/>
-			<br/>
+
 			<div id = "userInfo">
 				<p> This section is for your personal BAC calculation to ensure a safe drinking experience! </p>
 				<div>
@@ -43,8 +43,5 @@
 		<img src = "/DrinkingBuddies_Assets/logo_Back.png" id = "beerLogo_4">
 		<img src = "/DrinkingBuddies_Assets/logo_Back.png" id = "beerLogo_5">
 	</div>
-	<br class="clear">
-	
-	
 </body>
 </html>

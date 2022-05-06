@@ -16,7 +16,7 @@ body{
 .navBar{
 	white-space: normal;
 	width: 25%;
-	min-width: 300px;
+	min-width: 310px;
 	height: 100%;
 	background: #FFDD2B;
 	color: whitesmoke;
@@ -39,10 +39,10 @@ body{
 	color:inherit;
 }
 
-h1{
-	font-size: 50px;
-	margin: 20px;
-	font-weight: 900;
+.errorMsg{
+	color: #ff5757;
+	font-size: 10px;
+	margin-bottom: 15px;
 }
 
 .dbLogo{
@@ -76,6 +76,7 @@ h1{
 	width: 90%;
 	margin: 10px;
 	height: 40px;
+	display: inline-block;
 }
 
 .drinkButton{
@@ -93,6 +94,26 @@ h1{
 	width: 70%;
 	margin: 10px;
 	height: 30px;
+}
+
+.text-center{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 300px;
+	padding: 0px;
+	margin-bottom: 30px;
+}
+
+.display-inline{
+	display: inline-block;
+	text-align: left;
+	padding-left: 25px;
+}
+
+h1 {
+	font-size: 50px;
+	font-weight: 900;
 }
 
 #loginButton{
@@ -139,7 +160,7 @@ h1{
 
 #registerDiv{
 	width: 1000px;
-	height: 580px;
+	height: 560px;
 	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
@@ -191,7 +212,7 @@ h1{
 	width: 30px;
 	transform: rotate(10deg);
 	left: 555px;
-	top: 30px;
+	top: 20px;
 }
 
 #registerButton{
@@ -211,7 +232,6 @@ h1{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
-	margin-bottom: 10px;
 	height: 100px;
 }
 
