@@ -54,6 +54,23 @@ h1{
 	height: 40px;
 }
 
+.drinkButton{
+	color: white;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: FFA24C;
+	width: 100px;
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+.textBox_Drink{
+	width: 70%;
+	margin: 10px;
+	height: 30px;
+}
+
 #loginButton{
 	color: white;
 	border: none;
@@ -65,6 +82,8 @@ h1{
 	margin-bottom: 10px;
 }
 
+
+
 #loginDiv{
 	border: 1px solid blue;
 	white-space: normal;
@@ -74,6 +93,21 @@ h1{
 	display: inline-block;
 	text-align: center;
 	overflow: hidden;
+}
+
+#joinLobby{
+	border: 1px solid blue;
+	white-space: normal;
+	width: 70%;
+	height: auto;
+	min-width: 800px;
+	display: inline-block;
+	text-align: left;
+	overflow: hidden;
+}
+
+#joinLobby h2{
+	margin-left: 10px;
 }
 
 #loginForm{
