@@ -14,7 +14,13 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String homePage(ModelMap model, @RequestParam String userID, @RequestParam String password) {
-		return password;
+	public String homePage(ModelMap model, @RequestParam String email, 
+			@RequestParam String password, @RequestParam String userID,
+			@RequestParam String legalName, @RequestParam String birthDate,
+			@RequestParam String gender, @RequestParam String weight) {
+		// Maybe do database stuff here
+		
+		model.put("userID", userID);
+		return "home";
 	}
 }

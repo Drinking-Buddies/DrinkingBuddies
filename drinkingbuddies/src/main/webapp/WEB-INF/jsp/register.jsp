@@ -9,7 +9,7 @@
 			<h2>Register</h2>
 			<input class = "textBox" type = "text" name = "email" placeholder = "Email" required/>
 			<br/>
-			<input class = "textBox" type = "password" name = "userID" placeholder = "Password" required/>
+			<input class = "textBox" type = "password" name = "password" placeholder = "Password" required/>
 			<br/>
 			<input class = "textBox" type = "text" name = "userID" placeholder = "User ID" required/>
 			<br/>
@@ -23,13 +23,13 @@
 				</div>
 				<div>
 					<label for = "gender">Please input your binary sex: </label>
-					<select name = "gender" class = "selectBox">
+					<select name = "gender" class = "selectBox" required>
 						<option value = "Male">Male</option>
 						<option value = "Female">Female</option>
 					</select>
 				</div>
 			</div>
-			<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs"/>
+			<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" required/>
 			<br/>
 			<button id = "registerButton" type = "submit">Sign me up!</button>
 		</form>
