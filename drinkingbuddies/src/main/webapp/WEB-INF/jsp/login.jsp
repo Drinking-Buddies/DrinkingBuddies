@@ -28,7 +28,7 @@
 			<br/>
 			<button type = "submit">Login with Google</button>
 			<br/>
-			<p>Don't have a drinking buddy? <a href="www.google.com">Register Here!</a></p>
+			<p>Don't have a drinking buddy? <a href="/register">Register Here!</a></p>
 		</form>
 	</div>
 	<br class="clear">
