@@ -6,13 +6,12 @@ CREATE PROCEDURE NewUser (IN email VARCHAR(50),
 						  IN birthday DATE,
 						  IN phone VARCHAR(50),
 						  IN emergency_phone VARCHAR(50),
-						  IN weight INT UNSIGNED,
-						  IN height INT UNSIGNED)
+						  IN weight INT UNSIGNED)
 BEGIN
 	INSERT INTO Users (email, username, pass, birthday, phone, 
-			emergency_phone, weight, height)
+			emergency_phone, weight)
     VALUES (email, username, pass, birthday, phone, 
-			emergency_phone, weight, height);
+			emergency_phone, weight);
 END$$
 DELIMITER ;
 

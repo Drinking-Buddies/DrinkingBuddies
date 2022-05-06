@@ -16,8 +16,7 @@ CREATE TABLE Users (
     birthday DATE,
     phone VARCHAR(50),
     emergency_phone VARCHAR(50),
-    weight INT UNSIGNED,
-    height INT UNSIGNED
+    weight INT UNSIGNED
 );
 
 CREATE TABLE Past_events (
