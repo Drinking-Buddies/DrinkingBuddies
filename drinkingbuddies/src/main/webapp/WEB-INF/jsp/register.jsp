@@ -5,7 +5,6 @@
 </head>
 <body>
 	<div id = "registerDiv">
-		<h2>${errorMsg}</h2>
 		<form id = "registerForm" method = "POST">
 			<h2>Register</h2>
 			<input class = "textBox" type = "text" name = "email" placeholder = "Email" required/>
