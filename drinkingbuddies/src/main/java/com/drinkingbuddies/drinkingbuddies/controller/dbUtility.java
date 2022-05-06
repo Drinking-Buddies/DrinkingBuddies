@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
-public class Utility {
+public class dbUtility {
 	static public String DBUsername = "root"; 
 	static public String DBPassword = "root"; 
 	static public String url = "jdbc:mysql://localhost;3306/drinkingbuddies"; // temporary url 
