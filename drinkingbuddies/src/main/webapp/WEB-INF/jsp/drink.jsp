@@ -4,10 +4,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-	<script src="http://apis.google.com/js/api:client.js"></script>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-	<title>Login Page</title>
+	
+	<title>Drink Page</title>
 </head>
 <body>
 	<div class = "container">
@@ -18,6 +16,7 @@
 				</div>
 			</div>
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
+			<br/>
 			<div class = "mainNav">
 				<a href = "/home">Home</a>
 				<a href = "/profile">Profile</a>
@@ -27,17 +26,18 @@
 				<a href = "/login">login / register</a>
 			</div>
 		</div>
-		<div id = "loginDiv">
-			<form id = "loginForm"method = "POST">
-				<h2>Login</h2>
-				<input class = "textBox" type = "text" name = "userID" placeholder = "User ID" required/>
-				<input class = "textBox" type = "password" name = "password" placeholder = "Password" required/>
-				<p class = "errorMsg">${errorMsg}</p>
-				<button id = "loginButton" type = "submit">Login</button>
-				<p>Don't have a drinking buddy? <a href="/register" id = "registerLink">Register Here!</a></p>
+		<div id = "joinLobby">
+			<h2>${errorMsg}</h2>
+			<form id = "joinForm" method = "POST">
+				<h2>Be the Host</h2>
+				<input class = "textBox_Drink" type = "text" name = "hostName" placeholder = "Lobby Name"/>
+				<button class = "drinkButton" type = "submit">Host</button>
+				<br/>
+				<h2>Join a Lobby</h2>
+				<input class = "textBox_Drink" type = "text" name = "joinName" placeholder = "Lobby Name"/>
+				<button class = "drinkButton" type = "submit">Join</button>
 			</form>
 		</div>
 	</div>
-	
 </body>
 </html>

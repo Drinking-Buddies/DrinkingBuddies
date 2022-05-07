@@ -1,32 +1,54 @@
-
 body{
 	white-space: nowrap;
 	margin: 0px;
+	font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: black;
+}
+
+.container{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 100vh;
 }
 
 .navBar{
-	border: 1px solid red;
 	white-space: normal;
 	width: 25%;
-	min-width: 300px;
+	min-width: 310px;
 	height: 100%;
-	padding: 10px;
 	background: #FFDD2B;
-	display: inline-block;
-	
+	color: whitesmoke;
 	text-align: center;
+	
+	position: relative;
 }
 
-h1{
-	border: 1px solid red;
-	font-size: 50px;
+.toLogin{
+	width: 100%;
+	
+	position: absolute;
+	bottom: 20px;
+}
+
+.toLogin a{
+	font-size: 20px;
+	font-weight: 700;
+	text-decoration: none;
+	color:inherit;
+}
+
+.errorMsg{
+	color: #ff5757;
+	font-size: 10px;
+	margin-bottom: 15px;
 }
 
 .dbLogo{
-	border: 1px solid red;
 	width: 80px;
 	height: auto;
-	margin-bottom: 10px;
+	margin-bottom: 50px;
 }
 
 .clear{
@@ -34,7 +56,6 @@ h1{
 }
 
 .mainNav{
-	border: 1px solid red;
 	height: auto;
 	width: 100%;
 	text-align: center;
@@ -43,16 +64,56 @@ h1{
 }
 
 .mainNav a{
-	border: 1px solid red;
-	display: block;
-	width: 100%;
+	display: inline-block;
+	width: 90%;
 	margin-bottom: 20px;
+	font-weight: 700;
+	text-decoration: none;
+	color:inherit;
 }
 
 .textBox{
 	width: 90%;
 	margin: 10px;
 	height: 40px;
+	display: inline-block;
+}
+
+.drinkButton{
+	color: white;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: FFA24C;
+	width: 100px;
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+.textBox_Drink{
+	width: 70%;
+	margin: 10px;
+	height: 30px;
+}
+
+.text-center{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 300px;
+	padding: 0px;
+	margin-bottom: 30px;
+}
+
+.display-inline{
+	display: inline-block;
+	text-align: left;
+	padding-left: 25px;
+}
+
+h1 {
+	font-size: 50px;
+	font-weight: 900;
 }
 
 #loginButton{
@@ -66,8 +127,9 @@ h1{
 	margin-bottom: 10px;
 }
 
+
+
 #loginDiv{
-	border: 1px solid blue;
 	white-space: normal;
 	width: 70%;
 	height: auto;
@@ -77,6 +139,107 @@ h1{
 	overflow: hidden;
 }
 
+#joinLobby{
+	white-space: normal;
+	width: 70%;
+	height: auto;
+	min-width: 800px;
+	display: inline-block;
+	text-align: left;
+	overflow: hidden;
+	margin-left: 50px;
+}
+
+#joinLobby h2{
+	margin-left: 10px;
+}
+
 #loginForm{
 	padding: 10px;
+}
+
+#registerDiv{
+	width: 1000px;
+	height: 560px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: #F6F6F6;
+	border-radius: 5px;
+	
+	position: relative;
+}
+
+#registerForm{
+	padding: 10px;
+}
+
+#beerLogo_1{
+	position: absolute;
+	width: 100px;
+	transform: rotate(-60deg);
+	left: -70px;
+	top: -20px;
+}
+
+#beerLogo_2{
+	position: absolute;
+	width: 150px;
+	transform: rotate(-20deg);
+	left: -95px;
+	top: 500px;
+}
+
+#beerLogo_3{
+	position: absolute;
+	width: 120px;
+	transform: rotate(-10deg);
+	left: 970px;
+	top: -50px;
+}
+
+#beerLogo_4{
+	position: absolute;
+	width: 200px;
+	transform: rotate(20deg);
+	left: 950px;
+	top: 450px;
+}
+
+#beerLogo_5{
+	position: absolute;
+	width: 30px;
+	transform: rotate(10deg);
+	left: 555px;
+	top: 20px;
+}
+
+#registerButton{
+	color: white;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #FFDD2A;
+	width: 90%;
+	height: 30px;
+	margin-top: 10px;
+}
+
+#userInfo{
+	text-align: left;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	height: 100px;
+}
+
+#userInfo div{
+	margin-top: 10px;
+}
+
+#registerLink{
+	text-decoration: none;
+	color:inherit;
 }
