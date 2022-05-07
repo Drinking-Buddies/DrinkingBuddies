@@ -194,7 +194,7 @@ public class dbUtility {
 	public void addDrink (String email, String event_name, int amount)
 	{
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -219,7 +219,7 @@ public class dbUtility {
 	{
 		int amount = 0;
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
