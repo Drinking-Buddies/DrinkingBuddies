@@ -17,10 +17,8 @@
 			</div>
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png" style="margin-top: 30%">
 			<br/>
-			<div class = "mainNav">
-				<a href = "/">Leave</a>
 			<div class = "mainNav" style="margin-top: 40%">
-				<a href = "/home">Leave</a>
+				<a href = "/">Leave</a>
 			</div>
 		</div>
 
