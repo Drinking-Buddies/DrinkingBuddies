@@ -1,3 +1,5 @@
+<%@ page language="java" import = "java.util.*,com.drinkingbuddies.drinkingbuddies.classes.*"
+    contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/index.css">
