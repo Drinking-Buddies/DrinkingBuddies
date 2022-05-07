@@ -31,7 +31,6 @@ public class LobbyController {
     	for (String e : allPlayerEmails) {
     		User u = util.getUser(e);
     		String username = u.getUsername();
-    		int shots = 
     	}
     	
         return "lobby";

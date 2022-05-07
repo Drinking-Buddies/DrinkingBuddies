@@ -43,8 +43,11 @@ public class RegisterController {
 		if (errorMap.isEmpty()) {
 			util.newUser(email, userID, password, birthDate, phone, emergency, myWeight, "I am a person!");
 			Cookie usrName = new Cookie("userName", "Welcome="+userID+"!");
+			Cookie usrEmail = new Cookie("userEmail", email);
 			usrName.setMaxAge(3600);
+			usrEmail.setMaxAge(3600);
 			response.addCookie(usrName);
+			response.addCookie(usrEmail);
 			return "redirect:/home";
 		}else {
 			for (Entry<String, String> e : errorMap.entrySet()) {
