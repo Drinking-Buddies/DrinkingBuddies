@@ -10,7 +10,11 @@
 <body>
 	<div class = "container">
 		<div class = "navBar">
-			<h1>DRINKING BUDDIES</h1>
+			<div class = "text-center">
+				<div class = "display-inline">
+					<h1>DRINKING BUDDIES</h1>
+				</div>
+			</div>
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
 			<br/>
 			<div class = "mainNav">
