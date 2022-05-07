@@ -18,16 +18,19 @@
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
 			<br/>
 			<div class = "mainNav">
-				<a href = "/home">Home</a>
-				<a href = "/profile">Profile</a>
-				<a href = "/drink">Drink!</a>
-			</div>
-			<div class = "toLogin">
-				<a href = "/login">login / register</a>
+				<a href = "/home">Leave</a>
 			</div>
 		</div>
+
+
 		<div id = "lobbyDiv">
-			
+			<div class="greeting">
+				<h1>Room: ${roomName}</h1>
+			</div>
+			<div class="table">
+				<img class = "tables" src = "/DrinkingBuddies_Assets/table.png">
+			</div>
+
 		</div>
 	</div>
 </body>
