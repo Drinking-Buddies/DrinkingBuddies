@@ -27,12 +27,32 @@ public class LobbyController {
     	String lobbyName = readCookie("lobbyName", request).get();
     	LinkedList<String> allPlayerEmails = util.getParticipants(lobbyName);
     	
-    	// Need to construct player objects and get them into the fucking list
+    	// Need to check if the user is actually me
+    	String myName = readCookie("userName",request).get();
+    	
+    	
+    	// Need to construct player objects and get them into the list
+    	User me = null;
+    	int myShots = 0;
+    	int seat = 2;
     	for (String e : allPlayerEmails) {
     		User u = util.getUser(e);
     		String username = u.getUsername();
+    		int amount = util.getAmountDrinked(u.getEmail(), lobbyName);
+    		if (username.equals(myName)) {
+    			myShots = amount;
+    		}else {
+    			Player otherPlayer = new Player(username, amount, seat);
+        		allPlayers.add(otherPlayer);
+        		seat++;
+    		}
     	}
-    	
+    	Player mePlayer = new Player(myName, myShots, 1);
+    	allPlayers.add(0, mePlayer);
+    	for (Player p : allPlayers) {
+    		System.out.println(p.getName());
+    		System.out.println(p.getShots());
+    	}
         return "lobby";
     }
     

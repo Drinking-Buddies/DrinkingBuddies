@@ -214,6 +214,34 @@ public class dbUtility {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}
 	}	
+	
+	public int getAmountDrinked (String email, String event_name)
+	{
+		int amount = 0;
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL GetAmountDrinked(?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, email);
+			stmt.setString(2, event_name);
+			
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				amount = rs.getInt(1);
+			}
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		return amount;
+	}
 
 	public LinkedList<String> getParticipants (String event_name)
 	{
