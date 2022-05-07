@@ -1,10 +1,10 @@
 DROP PROCEDURE if exists NewEvent;
 DELIMITER $$
-CREATE PROCEDURE NewEvent (IN start_time DATETIME, OUT id INT)
+CREATE PROCEDURE NewEvent (IN start_time DATETIME, IN event_name VARCHAR(50))
 BEGIN
-	INSERT INTO Past_events (start_time)
-    VALUES (start_time);
-    SET id = LAST_INSERT_ID();
+	INSERT INTO Past_events (start_time, event_name)
+    VALUES (start_time, event_name);
+    SELECT id = LAST_INSERT_ID();
 END$$
 DELIMITER ;
 
@@ -16,5 +16,19 @@ CREATE PROCEDURE JoinEvent (IN email VARCHAR(50),
 BEGIN
 	INSERT INTO Drinking_history (email, event_id, amount)
     VALUES (email, event_id, amount);
+END$$
+DELIMITER ;
+
+DROP PROCEDURE if exists GetParticipants;
+DELIMITER $$
+CREATE PROCEDURE GetParticipants (IN event_id VARCHAR(50))
+BEGIN
+	SELECT u.*
+		FROM Users u
+		INNER JOIN drinking_history h
+		ON h.email = u.email
+		INNER JOIN past_events e
+		ON h.event_id = e.event_id
+		WHERE e.event_id = event_id;
 END$$
 DELIMITER ;

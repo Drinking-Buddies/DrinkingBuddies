@@ -16,11 +16,13 @@ CREATE TABLE Users (
     birthday DATE,
     phone VARCHAR(50),
     emergency_phone VARCHAR(50),
-    weight INT UNSIGNED
+    weight INT UNSIGNED,
+    bio VARCHAR(200)
 );
 
 CREATE TABLE Past_events (
 	event_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_name VARCHAR(50),
     start_time DATETIME NOT NULL DEFAULT NOW()
 );
 
