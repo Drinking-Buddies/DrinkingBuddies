@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.drinkingbuddies.drinkingbuddies.controller.Util.User;
 import com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility;
+import com.drinkingbuddies.drinkingbuddies.threads.UserThread;
 
 @Controller
 public class LobbyController {
-	private LinkedList<Player> allPlayers = new LinkedList<>();
+	private static LinkedList<UserThread> allPlayers = new LinkedList<>();
 	private dbUtility util = new dbUtility();
 	
     @RequestMapping(value = "/lobby", method = RequestMethod.GET)
@@ -42,29 +45,35 @@ public class LobbyController {
     		if (username.equals(myName)) {
     			myShots = amount;
     		}else {
-    			Player otherPlayer = new Player(username, amount, seat);
+    			UserThread otherPlayer = new UserThread(username, lobbyName, amount, seat);
         		allPlayers.add(otherPlayer);
         		seat++;
     		}
     	}
-    	Player mePlayer = new Player(myName, myShots, 1);
+    	UserThread mePlayer = new UserThread(myName, lobbyName, myShots, 1);
     	allPlayers.add(0, mePlayer);
-    	for (Player p : allPlayers) {
-    		System.out.println(p.getName());
-    		System.out.println(p.getShots());
-    	}
+    	executeThreads();
         return "lobby";
+    }
+    
+    private static void executeThreads() {
+    	ExecutorService ex = Executors.newCachedThreadPool();
+    	for (UserThread u : allPlayers) {
+    		ex.execute(u);
+    	}
+    	ex.shutdown();
     }
     
     @RequestMapping(value = "/lobby", method = RequestMethod.POST)
     public void addDrink(@RequestParam String userID) {
-    	for (Player p : allPlayers) {
-    		if (p.getName().equals(userID)) {
-    			p.addShot();
+    	for (UserThread u : allPlayers) {
+    		if (u.getName().equals(userID)) {
+    			u.addShot();
     		}
     	}
     }
 	
+    /*
 	public class Player{
 		private String name;
 		private int shots;
@@ -95,6 +104,7 @@ public class LobbyController {
 			this.shots += shots;
 		}
 	}
+	*/
 	
 	// Read them cookies
 	public Optional<String> readCookie(String key, HttpServletRequest request) {
