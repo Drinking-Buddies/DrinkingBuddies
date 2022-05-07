@@ -7,9 +7,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<title>Home Page</title>
-	
-	
 	<%
+		
        	Cookie[] cookies = null;
        	Cookie myCookie = null;
 		
@@ -21,6 +20,7 @@
 				if (cookies[i].getName().equals("username")){
 					myCookie = cookies[i];
 					welcomeMsg = cookies[i].getValue();
+					System.out.println(welcomeMsg);
 					login = true;
 				}
 			}
@@ -38,18 +38,26 @@
 			</div>
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
 			<div class = "mainNav">
-				<a href = "/home">Home</a>
+				<a href = "/">Home</a>
 				<a href = "/profile">Profile</a>
 				<a href = "/drink">Drink!</a>
 			</div>
 			<div class = "toLogin">
-				<a href = "/login">login / register</a>
+				<%
+					if (!login){
+						out.println("<a href = '/login'>login / register</a>");
+					}else{
+						out.println("<a href = '/' onclick = 'LogOut();'>logout</a>");
+					}
+				%>
 			</div>
 		</div>
 		<h1><%
        			if (login){
        				out.println(welcomeMsg);
-       			}       				
+       			}else{
+       				out.println("Welcome guest!");
+       			}
        		%>
 	    </h1>
 		<h2>Here's your stats from the past few days: </h2>
@@ -69,7 +77,7 @@
 			 /*
 					}
 				}
-				*/
+			 */
 		 -->
 		</div>
 		<h2>Friends currently online: </h2>
@@ -94,11 +102,19 @@
 			 /*
 					}
 				}
-				*/
+			*/
 			
-		-->
+			-->
 		</div> 
 	</div>
+	
+	<script>
+		function LogOut(){
+			document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+			return true;
+		}
+	</script>
+	
 </body>
 
 </HTML>

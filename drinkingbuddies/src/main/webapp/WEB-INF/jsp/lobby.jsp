@@ -18,7 +18,7 @@
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
 			<br/>
 			<div class = "mainNav">
-				<a href = "/home">Leave</a>
+				<a href = "/">Leave</a>
 			</div>
 		</div>
 

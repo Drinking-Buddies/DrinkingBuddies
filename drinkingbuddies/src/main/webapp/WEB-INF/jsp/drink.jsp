@@ -18,7 +18,7 @@
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
 			<br/>
 			<div class = "mainNav">
-				<a href = "/home">Home</a>
+				<a href = "/">Home</a>
 				<a href = "/profile">Profile</a>
 				<a href = "/drink">Drink!</a>
 			</div>

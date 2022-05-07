@@ -20,17 +20,17 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String homePage(ModelMap model, @RequestParam String userID, @RequestParam String password, HttpServletResponse response) {
+	public String checkLogin(ModelMap model, @RequestParam String userID, @RequestParam String password, HttpServletResponse response) {
 		// Check if password and userID matches
 		// This is a template that could be followed
 		if (userID.equals("admin") && password.equals("root")) {
 			Cookie usrName = new Cookie("username", "Welcome="+userID+"!");
 			usrName.setMaxAge(3600);
 			response.addCookie(usrName);
-			return "home";
+			return "redirect:/";
 		}else {
 			model.put("errorMsg", "Invalid user ID or password");
-			return "login";
+			return "redirect:/login";
 		}
 	}
 }

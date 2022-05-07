@@ -18,7 +18,7 @@ public class DrinkController {
 		// This is a template that could be followed
 		if (joinName.equals("lobby")) {
 			model.put("lobbyName", joinName);
-			return "lobby";
+			return "redirect:/lobby";
 		}else {
 			model.put("errorMsg", "Room not found bruv");
 			return "drink";
