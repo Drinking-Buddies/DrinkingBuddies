@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class lobbyController {
-
     @RequestMapping(value = "/lobby", method = RequestMethod.GET)
     public String lobbyController(){
         return "lobby";
