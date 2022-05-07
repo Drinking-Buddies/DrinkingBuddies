@@ -39,6 +39,7 @@
 		<h2 id = "userDOB">${DOB}</h2>
 		<h2>Your Friends: </h2>
 		<div id = "friendsList">
+			<%--
 			<%
 				List<Friend> friendsList;
 				friendsList = (List<Friend>) request.getAttribute("friendsList");
@@ -56,6 +57,7 @@
 				}
 				
 			%>
+			--%>
 		</div> 
 		<form id = "addFriend" method = "POST">
 			<input class = "textBox" type = "text" name = "friendName">
