@@ -1,4 +1,3 @@
--- remove the drop stuff for final script
 DROP DATABASE IF EXISTS buddy;
 CREATE DATABASE buddy;
 
