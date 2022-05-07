@@ -53,7 +53,7 @@
 		</div>
 		<h1><%
        			if (login){
-       				out.println(welcomeMsg);
+       				out.println("Welcome "+welcomeMsg+"!");
        			}else{
        				out.println("Welcome guest!");
        			}
