@@ -65,8 +65,8 @@ body{
 .mainNav a{
 	display: inline-block;
 	width: 90%;
-	margin-bottom: 20px;
-	font-weight: 700;
+	margin-bottom: 18px;
+	font-weight: 800;
 	text-decoration: none;
 	color:inherit;
 }
@@ -159,7 +159,7 @@ h1 {
 
 #registerDiv{
 	width: 1000px;
-	height: 560px;
+	height: auto;
 	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
@@ -223,6 +223,7 @@ h1 {
 	width: 90%;
 	height: 30px;
 	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 #userInfo{

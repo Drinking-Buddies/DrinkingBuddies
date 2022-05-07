@@ -34,6 +34,11 @@
 				</div>
 			</div>
 			<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" required/>
+			<p class = "errorMsg">${errorWeight}</p>
+			<br/>
+			<input class = "textBox" type = "text" name = "phone" placeholder = "Please enter your phone number" required/>
+			<br/>
+			<input class = "textBox" type = "text" name = "emergency" placeholder = "Please enter your emergency contact" required/>
 			<br/>
 			<button id = "registerButton" type = "submit">Sign me up!</button>
 		</form>
