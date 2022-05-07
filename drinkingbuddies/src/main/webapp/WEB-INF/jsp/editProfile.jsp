@@ -29,12 +29,22 @@
 			</div>
 		</div>
 		<h1 id = "userID">${userID}</h1>
-		<button id = "editButton" href = "editProfile.jsp">Edit Profile</button>
 		<h2 id = "userName">${userName}</h2>
-		<p id = "userBio">${bio}</p>
-		<h2 id = "userEmail">${email}</h2>
-		<h2 id = "userPhoneNum">${phone}</h2>
-		<h2 id = "userDOB">${DOB}</h2>
+		<form id = "profileInfo" method = "POST">
+			<p id = "userBio">
+				<input id = "bioInput" type = "text">
+			</p>
+			<h2 id = "userEmail">
+				<input id = "emailInput" type = "text">
+			</h2>
+			<h2 id = "userPhoneNum">
+				<input id = "phoneNumInput" type = "text">
+			</h2>
+			<h2 id = "userDOB">
+				<input id = "DOBInput" type = "text">
+			</h2>
+			<button id = "doneButton" type = "submit">Done</button>
+		</form>
 		<h2>Your Friends: </h2>
 		<div id = "friendsList">
 			<%
