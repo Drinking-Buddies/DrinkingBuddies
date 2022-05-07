@@ -42,8 +42,30 @@ CREATE PROCEDURE JoinEvent (IN email VARCHAR(50),
 							IN event_name VARCHAR(50),
                             IN amount INT)
 BEGIN
-	INSERT INTO Drinking_history (email, event_name, amount)
-    VALUES (email, event_name, amount);
+	IF NOT EXISTS (SELECT event_name FROM drinking_history d WHERE d.email = email and d.event_name = event_name)
+	THEN	
+		INSERT INTO Drinking_history (email, event_name, amount)
+		VALUES (email, event_name, amount);
+    END IF;
+END$$
+DELIMITER ;
+
+DROP PROCEDURE if exists AddDrink;
+DELIMITER $$
+CREATE PROCEDURE AddDrink (IN email VARCHAR(50), IN event_name VARCHAR(50), IN amount INT)
+BEGIN
+    UPDATE drinking_history d
+    SET d.amount = d.amount + amount
+    WHERE d.email = email and d.event_name = event_name;
+END$$
+DELIMITER ;
+
+DROP PROCEDURE if exists GetAmountDrinked;
+DELIMITER $$
+CREATE PROCEDURE GetAmountDrinked (IN email VARCHAR(50), IN event_name VARCHAR(50))
+BEGIN
+    SELECT d.amount FROM drinking_history d
+    WHERE d.email = email and d.event_name = event_name;
 END$$
 DELIMITER ;
 
