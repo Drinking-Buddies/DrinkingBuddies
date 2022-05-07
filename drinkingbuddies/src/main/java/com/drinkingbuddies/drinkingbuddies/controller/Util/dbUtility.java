@@ -1,134 +1,265 @@
-//package com.drinkingbuddies.drinkingbuddies.controller.Util;
-//
-//import java.util.Map;
-////import java.sql.Connection;
-////import java.sql.DriverManager;
-////import java.sql.SQLException;
-//import java.util.regex.Pattern;
-//
-//import javax.sql.DataSource;
-//
-//import org.apache.catalina.User;
-////import org.graalvm.compiler.nodes.ReturnNode;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.ComponentScan;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-//import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-//import org.springframework.jdbc.core.simple.*;
-//import org.springframework.jdbc.datasource.DriverManagerDataSource;
-//
-//@Configuration
-//@ComponentScan("com.baeldung.jdbc")
-//
-//public class dbUtility {
-//	@Bean
-//	public DataSource mysqlDatasource()
-//	{
-//		DriverManagerDataSource datasource = new DriverManagerDataSource();
-//		datasource.setDriverClassName("com.mysql.jdbc.Driver"); 
-//		datasource.setUrl("jdbc:mysql://localhost:3306/drinkingbuddies"); // temporary url 
-//		datasource.setUsername("root"); 
-//		datasource.setPassword("root"); 
-//		
-//		return datasource; 
-//		
-//	}
-////	static public String DBUsername = "root"; 
-////	static public String DBPassword = "root"; 
-////	static public String url = "jdbc:mysql://localhost;3306/drinkingbuddies"; 
-//	
-//	static public Pattern namePattern = Pattern.compile("^[ A-Za-z]+$"); 
-//	static public Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\."
-//            + "[a-zA-Z0-9_+&*-]+)*@"
-//            + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
-//            + "A-Z]{2,7}$"); 
-//	
-//	public void setdatasource (DataSource datasource) // put this into each Class (User, friends, ...) 
-//	{
-//		 this.simpleJdbcTemplate = new SimpleJdbcTemplate(datasource);
-//	     this.simpleJdbcCall = new SimpleJdbcCall(datasource).withProcedureName(Procedure_name); //put stored procedures instead of Procedure_name 
-//	}
-//	 
-//	public void insertUser (String email, String username, String pass, String birthday, String phone, String emergency_phone, int weight) 
-//	//reference: 12.5.5 in https://docs.spring.io/spring-framework/docs/3.0.0.M4/reference/html/ch12s05.html 
-//	{
-//		MapSqlParameterSource in = new MapSqlParameterSource(); 
-//		
-//		in.addValue("email", email); 
-//		in.addValue("username", username); 
-//		in.addValue("pass", pass);
-//		in.addValue("birthday", birthday);
-//		in.addValue("phone", phone); 
-//		in.addValue("emergency_phone", emergency_phone);
-//		in.addValue("weight", weight);
-//		
-//		simpleJdbcCall.execute(in); //simpleJdbcCall is from the setdatasource function above 
-//		
-//		User user = new User(email, username, pass, birthday, phone, emergency_phone, weight); 
-////		user.setemail(email); 
-////		user.setusername(username); 
-////		user.setpassword(pass); 
-////		user.setbirthday(birthday);
-////		user.setphone(phone); 
-////		user.setemergencyphone(emergency_phone); 
-////		user.setweight(weight); 
-//	}
-//	
-//	public boolean userlogin (String email, String pass)
-//	{
-//		MapSqlParameterSource in = new MapSqlParameterSource(); 
-//		
-//		in.addValue("email", email); 
-//		in.addValue("pass", pass);
-//		
-//		Map out = simpleJdbcCall.execute(in); 
-//		
-//		return (boolean) out.get("valid");
-//	} 
-//	
-//	public void friendrequest (String requester, String receiver)
-//	{
-//		MapSqlParameterSource in = new MapSqlParameterSource(); 
-//		
-//		in.addValue("requester", requester); 
-//		in.addValue("receiver", receiver);
-//		
-//		simpleJdbcCall.execute(in); 
-//		
-//	} 
-//	
-//	public void acceptfriend (String requester, String receiver)
-//	{
-//		MapSqlParameterSource in = new MapSqlParameterSource(); 
-//		
-//		in.addValue("requester", requester); 
-//		in.addValue("receiver", receiver);
-//		
-//		simpleJdbcCall.execute(in); 
-//		
-//	} 
-//
-//	public int newevent (String starttime)
-//	{
-//		MapSqlParameterSource in = new MapSqlParameterSource(); 
-//		
-//		in.addValue("start_time", starttime); 
-//		
-//		Map out = simpleJdbcCall.execute(in); 
-//		
-//		return (int) out.get("id"); 
-//	} 
-//	
-//	public void joinevent (String email, String eventid, int amount)
-//	{
-//		MapSqlParameterSource in = new MapSqlParameterSource(); 
-//		s
-//		in.addValue("email", email); 
-//		in.addValue("event_id", eventid); 
-//		in.addValue("amount", amount); 
-//		
-//		simpleJdbcCall.execute(in); 
-//	
-//	}
-//}
+package com.drinkingbuddies.drinkingbuddies.controller.Util;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Map;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.regex.Pattern;
+
+public class dbUtility {
+	private static final String DB = "jdbc:mysql://localhost:3306/buddy";
+	private static final String DBUserName = "root";
+	private static final String DBPassword = "root";
+ 
+	public void newUser (String email, String username, String pass, String birthday, String phone, String emergency_phone, int weight, String bio) {
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL NewUser(?, ?, ?, ?, ?, ?, ?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, email);
+			stmt.setString(2, username);
+			stmt.setString(3, pass);
+			stmt.setString(4, birthday);
+			stmt.setString(5, phone);
+			stmt.setString(6, emergency_phone);
+			stmt.setInt(7, weight);
+			stmt.setString(8, bio);
+			
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+	}
+	
+	public boolean userExists(String email, String pass) {
+		boolean result = false;
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL UserExists(?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, email);
+			stmt.setString(2, pass);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			result = rs.getBoolean(1);
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+		return result;
+	}
+	
+	public int newEvent (String start_time, String event_name) {
+		int result = -1;
+		
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL NewEvent(?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, start_time);
+			stmt.setString(2, event_name);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			result = rs.getInt(1);
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+		return result;
+	} 
+	
+	public void joinEvent (String email, int event_id, int amount)
+	{
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL JoinEvent(?, ?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, email);
+			stmt.setInt(2, event_id);
+			stmt.setInt(3, amount);
+			
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+	
+	}
+	
+	public LinkedList<String> getParticipants (int event_id)
+	{
+		LinkedList<String> result = new LinkedList<String>();
+		
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL GetParticipants(?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setInt(1, event_id);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+       			result.add(rs.getString(1));
+       		}
+
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+		return result;
+	}
+	
+	public void friendRequest (String requester, String receiver)
+	{
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL FriendRequest(?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, requester);
+			stmt.setString(2, receiver);
+			
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+	} 
+	
+	public void acceptFriend (String requester, String receiver)
+	{
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL AcceptFriend(?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, requester);
+			stmt.setString(2, receiver);
+			
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+	} 
+	
+	public LinkedList<String> getFriends (int email)
+	{
+		LinkedList<String> result = new LinkedList<String>();
+		
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL GetFriends(?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setInt(1, email);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+       			result.add(rs.getString(1));
+       		}
+
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+		return result;
+	}
+	
+	public boolean areFriends(String email1, String email2) {
+		boolean result = false;
+		
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL AreFriends(?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, email1);
+			stmt.setString(2, email2);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			result = rs.getBoolean(1);
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+		return result;
+	}
+	
+}
