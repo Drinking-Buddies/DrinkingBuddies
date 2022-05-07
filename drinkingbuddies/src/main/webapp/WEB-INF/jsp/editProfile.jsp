@@ -34,16 +34,16 @@
 		<h2 id = "userName">${userName}</h2>
 		<form id = "profileInfo" method = "POST">
 			<p id = "userBio">
-				<input id = "bioInput" type = "text">
+				<label>Bio: <input id = "bioInput" type = "text"></label>
 			</p>
 			<h2 id = "userEmail">
-				<input id = "emailInput" type = "text">
+				<label>Email: <input id = "emailInput" type = "text"></label>
 			</h2>
 			<h2 id = "userPhoneNum">
-				<input id = "phoneNumInput" type = "text">
+				<label>Phone Number: <input id = "phoneNumInput" type = "text"></label>
 			</h2>
 			<h2 id = "userDOB">
-				<input id = "DOBInput" type = "text">
+				<label>Date of Birth: <input id = "DOBInput" type = "text"></label>
 			</h2>
 			<button id = "doneButton" type = "submit">Done</button>
 		</form>
