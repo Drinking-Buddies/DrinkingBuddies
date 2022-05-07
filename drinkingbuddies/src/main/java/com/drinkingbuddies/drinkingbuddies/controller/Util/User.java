@@ -10,6 +10,8 @@ public class User {
     private int weight;
     private String bio;
     
+    public User() {}
+    
 	public User(String email, String username, String pass, String birthday, String phone, String emergency_phone,
 			int weight, String bio) {
 		this.email = email;
