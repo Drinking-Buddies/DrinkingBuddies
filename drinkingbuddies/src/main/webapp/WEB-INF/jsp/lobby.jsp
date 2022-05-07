@@ -15,9 +15,9 @@
 					<h1>DRINKING BUDDIES</h1>
 				</div>
 			</div>
-			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
+			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png" style="margin-top: 30%">
 			<br/>
-			<div class = "mainNav">
+			<div class = "mainNav" style="margin-top: 40%">
 				<a href = "/home">Leave</a>
 			</div>
 		</div>
@@ -27,10 +27,37 @@
 			<div class="greeting">
 				<h1>Room: ${roomName}</h1>
 			</div>
+			<div class="user" style="margin-top: 16%;margin-left: 2%; width: 16%">
+				1
+				<form id = "name" method = "POST">
+					<button type="submit" name="addShot" id="addShot"> Add Shot </button>
+				</form>
+
+			</div>
+			<div class="user" style="margin-top: 4%;margin-left: 12%">
+				2
+			</div>
+			<div class="user" style="margin-top: 0%;margin-left: 32%">
+				3
+			</div>
+			<div class="user" style="margin-top: 4%;margin-left: 52%">
+				4
+			</div>
+			<div class="user" style="margin-top: 16%;margin-left: 60%">
+				5
+			</div>
+			<div class="user" style="margin-top: 30%;margin-left: 52%">
+				6
+			</div>
+			<div class="user"style="margin-top: 34%;margin-left: 32%">
+				7
+			</div>
+			<div class="user"style="margin-top: 30%;margin-left: 12%">
+				8
+			</div>
 			<div class="table">
 				<img class = "tables" src = "/DrinkingBuddies_Assets/table.png">
 			</div>
-
 		</div>
 	</div>
 </body>
