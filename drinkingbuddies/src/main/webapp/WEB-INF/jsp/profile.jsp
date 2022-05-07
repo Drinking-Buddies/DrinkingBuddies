@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<h1 id = "userID">${userID}</h1>
-		<button id = "editButton" href = "editProfile.jsp">Edit Profile</button>
+		<a href = "/editProfile">Edit Profile</a>
 		<h2 id = "userName">${userName}</h2>
 		<p id = "userBio">${bio}</p>
 		<h2 id = "userEmail">${email}</h2>
