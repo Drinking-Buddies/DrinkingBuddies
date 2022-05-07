@@ -1,6 +1,5 @@
 <%@ page language="java" import = "java.util.*" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="com.drinkingbuddies.drinkingbuddies.classes.user" %>
 <HTML>
 <head>
 	<link rel="stylesheet" type="text/css" href="/index.css">
@@ -56,7 +55,6 @@
 		<h2>Here's your stats from the past few days: </h2>
 		<div id = "drinkingHistory">
 		<!-- 
-			<%
 			/*
 				List<Date> drinkingHistory;
 				drinkingHistory = (List<Date>) request.getAttribute("drinkingHistory");
@@ -65,44 +63,39 @@
 					for(int i = 0; i < drinkingHistory.size(); i++)
 					{
 			*/
-			%>
 					<button>
 						drinkingHistory.get(i).getDate();
 					</button>
-			<% /*
+			 /*
 					}
 				}
 				*/
-			%>
 		 -->
 		</div>
 		<h2>Friends currently online: </h2>
 		<div id = "friendsList">
 		<!-- 
-			<%
-<<<<<<< HEAD
+			
 			/*
 				List<Friend> friendsList;
 				friendsList = (List<Friend>) request.getAttribute("friendsList");
-=======
 				List<user> friendsList;
 				friendsList = (List<user>) request.getAttribute("friendsList");
->>>>>>> d848270ac55831e48f2603739f688717159c150c
 				if(friendsList != null && !friendsList.isEmpty())
 				{
 					for(int i = 0; i < friendsList.size(); i++)
 					{
 			*/
-			%>
+			
 				<button>
 					friendsList.get(i).getUsername();
 					friendsList.get(i).getOnlineStatus();
 				</button>
-			<% /*
+			 /*
 					}
 				}
 				*/
-			%>
+			
 		-->
 		</div> 
 	</div>
