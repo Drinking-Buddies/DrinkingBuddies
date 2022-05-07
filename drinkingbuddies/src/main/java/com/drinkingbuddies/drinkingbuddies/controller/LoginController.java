@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.drinkingbuddies.drinkingbuddies.controller.Util.User;
 import com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility;
 
 @Controller
@@ -30,7 +31,8 @@ public class LoginController {
 		
 		// Check if the user exists
 		if (util.userExists(email, password)) {
-			String userID = util.getUser(email).getUsername();
+			User user = util.getUser(email);
+			String userID = user.getUsername();
 			Cookie usrName = new Cookie("username", "Welcome="+userID+"!");
 			usrName.setMaxAge(3600);
 			response.addCookie(usrName);

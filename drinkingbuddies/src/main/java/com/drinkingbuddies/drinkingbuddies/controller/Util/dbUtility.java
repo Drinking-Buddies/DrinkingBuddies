@@ -25,17 +25,18 @@ public class dbUtility {
 				stmt.setString(1, email);
 				
 				//Execute stored procedure
-				ResultSet rs = stmt.executeQuery();
 				
-				user.setEmail(rs.getString("email")); 
-				user.setUsername(rs.getString("username")); 
-				user.setPass(rs.getString("pass")); 
-				user.setBirthday(rs.getString("birthday"));
-				user.setPhone(rs.getString("phone"));
-				user.setEmergency_phone(rs.getString("emergency"));
-				user.setWeight(rs.getInt("weight"));
-				user.setBio(rs.getString("bio")); 
-			
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					user.setEmail(rs.getString("email")); 
+					user.setUsername(rs.getString("username")); 
+					user.setPass(rs.getString("pass")); 
+					user.setBirthday(rs.getString("birthday"));
+					user.setPhone(rs.getString("phone"));
+					user.setEmergency_phone(rs.getString("emergency_phone"));
+					user.setWeight(rs.getInt("weight"));
+					user.setBio(rs.getString("bio")); 
+				}			
 				
 			} catch (SQLException sqle) {
 				System.out.println ("SQLException: " + sqle.getMessage());

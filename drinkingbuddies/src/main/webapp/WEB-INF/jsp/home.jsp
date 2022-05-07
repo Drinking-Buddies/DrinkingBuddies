@@ -20,7 +20,6 @@
 				if (cookies[i].getName().equals("username")){
 					myCookie = cookies[i];
 					welcomeMsg = cookies[i].getValue();
-					System.out.println(welcomeMsg);
 					login = true;
 				}
 			}
