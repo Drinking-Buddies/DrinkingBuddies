@@ -91,7 +91,12 @@ public class dbUtility {
 			
 			ResultSet rs = stmt.executeQuery();
 			
-			result = rs.getBoolean(1);
+			if (rs.next()) {
+				if (rs.getInt(1) != 0) {
+					result = true;
+				}
+			}
+			
 		} catch (SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}
@@ -119,7 +124,9 @@ public class dbUtility {
 			
 			ResultSet rs = stmt.executeQuery();
 			
-			result = rs.getInt(1);
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
 		} catch (SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}
@@ -282,7 +289,10 @@ public class dbUtility {
 			
 			ResultSet rs = stmt.executeQuery();
 			
-			result = rs.getBoolean(1);
+			if (rs.next()) {
+				result = rs.getBoolean(1);
+			}
+			
 		} catch (SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}

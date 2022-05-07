@@ -30,7 +30,7 @@
 		<div id = "loginDiv">
 			<form id = "loginForm"method = "POST">
 				<h2>Login</h2>
-				<input class = "textBox" type = "text" name = "userID" placeholder = "User ID" required/>
+				<input class = "textBox" type = "text" name = "email" placeholder = "Email" required/>
 				<input class = "textBox" type = "password" name = "password" placeholder = "Password" required/>
 				<p class = "errorMsg">${errorMsg}</p>
 				<button id = "loginButton" type = "submit">Login</button>

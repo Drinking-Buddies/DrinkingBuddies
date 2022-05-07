@@ -12,25 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility;
+
 @Controller
 public class LoginController {
+	private dbUtility util = new dbUtility();
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
 		return "login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String checkLogin(ModelMap model, @RequestParam String userID, @RequestParam String password, HttpServletResponse response) {
+	public String checkLogin(ModelMap model, @RequestParam String email, @RequestParam String password, HttpServletResponse response) {
 		// Check if password and userID matches
 		// This is a template that could be followed
-		if (userID.equals("admin") && password.equals("root")) {
+		
+		// Check if the user exists
+		if (util.userExists(email, password)) {
+			String userID = util.getUser(email).getUsername();
 			Cookie usrName = new Cookie("username", "Welcome="+userID+"!");
 			usrName.setMaxAge(3600);
 			response.addCookie(usrName);
 			return "redirect:/";
 		}else {
 			model.put("errorMsg", "Invalid user ID or password");
-			return "redirect:/login";
+			return "login";
 		}
 	}
 }
