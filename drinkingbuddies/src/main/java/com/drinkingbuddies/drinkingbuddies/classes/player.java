@@ -1,6 +1,6 @@
-package com.drinkingbuddies.drinkingbuddies.player;
+package com.drinkingbuddies.drinkingbuddies.classes;
 
-import com.drinkingbuddies.drinkingbuddies.Drink.Drink;
+import com.drinkingbuddies.drinkingbuddies.classes.Drink;
 
 import java.util.List;
 

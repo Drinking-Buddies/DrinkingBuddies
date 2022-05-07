@@ -1,4 +1,4 @@
-package com.drinkingbuddies.drinkingbuddies.Drink;
+package com.drinkingbuddies.drinkingbuddies.classes;
 
 public class Drink {
     String name;
