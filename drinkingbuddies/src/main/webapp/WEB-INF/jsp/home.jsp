@@ -17,7 +17,7 @@
 		String welcomeMsg = "";
 		if (cookies != null){
 			for (int i = 0; i < cookies.length; i++){
-				if (cookies[i].getName().equals("username")){
+				if (cookies[i].getName().equals("userName")){
 					myCookie = cookies[i];
 					welcomeMsg = cookies[i].getValue();
 					login = true;
@@ -37,7 +37,7 @@
 			</div>
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png">
 			<div class = "mainNav">
-				<a href = "/">Home</a>
+				<a href = "/home">Home</a>
 				<a href = "/profile">Profile</a>
 				<a href = "/drink">Drink!</a>
 			</div>
@@ -46,7 +46,7 @@
 					if (!login){
 						out.println("<a href = '/login'>login / register</a>");
 					}else{
-						out.println("<a href = '/' onclick = 'LogOut();'>logout</a>");
+						out.println("<a href = '/home' onclick = 'LogOut();'>logout</a>");
 					}
 				%>
 			</div>
@@ -109,7 +109,7 @@
 	
 	<script>
 		function LogOut(){
-			document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+			document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
 			return true;
 		}
 	</script>

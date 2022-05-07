@@ -42,10 +42,10 @@ public class RegisterController {
 		// Add to database and cookie if no problem is detected
 		if (errorMap.isEmpty()) {
 			util.newUser(email, userID, password, birthDate, phone, emergency, myWeight, "I am a person!");
-			Cookie usrName = new Cookie("username", "Welcome="+userID+"!");
+			Cookie usrName = new Cookie("userName", "Welcome="+userID+"!");
 			usrName.setMaxAge(3600);
 			response.addCookie(usrName);
-			return "redirect:/";
+			return "redirect:/home";
 		}else {
 			for (Entry<String, String> e : errorMap.entrySet()) {
 				model.put(e.getKey(), e.getValue());

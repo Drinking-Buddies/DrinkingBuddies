@@ -4,8 +4,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-	
 	<title>Drink Page</title>
+
 </head>
 <body>
 	<div class = "container">
@@ -18,7 +18,7 @@
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png" style="margin-top: 30%">
 			<br/>
 			<div class = "mainNav" style="margin-top: 40%">
-				<a href = "/">Leave</a>
+				<a href = "/home">Leave</a>
 			</div>
 		</div>
 

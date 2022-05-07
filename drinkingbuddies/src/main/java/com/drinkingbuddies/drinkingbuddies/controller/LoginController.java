@@ -33,10 +33,17 @@ public class LoginController {
 		if (util.userExists(email, password)) {
 			User user = util.getUser(email);
 			String userID = user.getUsername();
-			Cookie usrName = new Cookie("username", "Welcome="+userID+"!");
+			Cookie usrName = new Cookie("userName", "Welcome="+userID+"!");
+			Cookie usrEmail = new Cookie("userEmail", email);
 			usrName.setMaxAge(3600);
+			usrEmail.setMaxAge(3600);
+			
+			usrName.setPath("/");
+			usrEmail.setPath("/");
+			
 			response.addCookie(usrName);
-			return "redirect:/";
+			response.addCookie(usrEmail);
+			return "redirect:/home";
 		}else {
 			model.put("errorMsg", "Invalid user ID or password");
 			return "login";
