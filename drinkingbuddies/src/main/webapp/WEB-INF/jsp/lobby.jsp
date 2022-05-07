@@ -27,32 +27,32 @@
 			<div class="greeting">
 				<h1>Room: ${roomName}</h1>
 			</div>
-			<div class="user" style="margin-top: 16%;margin-left: 2%; width: 16%">
+			<div class="user" style="margin-top:180px; margin-left:8%; width: 180px">
 				1
 				<form id = "name" method = "POST">
 					<button type="submit" name="addShot" id="addShot"> Add Shot </button>
 				</form>
 
 			</div>
-			<div class="user" style="margin-top: 4%;margin-left: 12%">
+			<div class="user" style="margin-top: 55px;margin-left: 15%;width: 180px">
 				2
 			</div>
-			<div class="user" style="margin-top: 0%;margin-left: 32%">
+			<div class="user" style="margin-top: 0px;margin-left: 42%;width: 180px">
 				3
 			</div>
-			<div class="user" style="margin-top: 4%;margin-left: 52%">
+			<div class="user" style="margin-top: 55px;margin-left: 68%;width: 180px">
 				4
 			</div>
-			<div class="user" style="margin-top: 16%;margin-left: 60%">
+			<div class="user" style="margin-top: 180px;margin-left: 75%;width: 180px">
 				5
 			</div>
-			<div class="user" style="margin-top: 30%;margin-left: 52%">
+			<div class="user" style="margin-top: 330px;margin-left: 71%;width: 180px">
 				6
 			</div>
-			<div class="user"style="margin-top: 34%;margin-left: 32%">
+			<div class="user"style="margin-top: 420px;margin-left: 42%;width: 180px">
 				7
 			</div>
-			<div class="user"style="margin-top: 30%;margin-left: 12%">
+			<div class="user"style="margin-top: 330px;margin-left: 12%;width: 180px">
 				8
 			</div>
 			<div class="table">
