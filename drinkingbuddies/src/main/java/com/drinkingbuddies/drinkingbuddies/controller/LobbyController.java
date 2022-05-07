@@ -48,10 +48,11 @@ public class LobbyController {
 		public void setShots(int shots) {
 			this.shots = shots;
 		}
-		
 		public void addShot() {
 			this.shots += 1;
 		}
-		
+		public void addShots(int shots) {
+			this.shots += shots;
+		}
 	}
 }
