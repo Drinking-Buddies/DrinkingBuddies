@@ -1,6 +1,6 @@
 package com.drinkingbuddies.drinkingbuddies.classes;
 
-public abstract class user {
+public abstract class User {
     String name;
     String userID;
     public void joinRoom(){}

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class registerUser extends user{
+public class RegisterUser extends User{
     String userName;
     String email;
     String password;
@@ -17,7 +17,7 @@ public class registerUser extends user{
     Map<String, List<Drink>> drinkHis;
     List<String> friends;
 
-    public registerUser(String userName,
+    public RegisterUser(String userName,
                         String email,
                         String password,
                         String birthday,
