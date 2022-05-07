@@ -37,10 +37,6 @@ public class LoginController {
 			Cookie usrEmail = new Cookie("userEmail", email);
 			usrName.setMaxAge(3600);
 			usrEmail.setMaxAge(3600);
-			
-			usrName.setPath("/");
-			usrEmail.setPath("/");
-			
 			response.addCookie(usrName);
 			response.addCookie(usrEmail);
 			return "redirect:/home";

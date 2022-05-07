@@ -30,7 +30,7 @@ public class DrinkController {
 	
 	@RequestMapping(value = "/drink", method = RequestMethod.POST)
 	public String homePage(ModelMap model, @RequestParam(defaultValue = "") String hostName, 
-			@RequestParam String joinName, HttpServletRequest request) {
+			@RequestParam String joinName, HttpServletResponse response, HttpServletRequest request) {
 		
 		String email = readCookie("userEmail", request).get();
 		
@@ -51,6 +51,9 @@ public class DrinkController {
 	        	if (!email.isBlank()) {
 		        	util.newEvent(date, hostName);
 		        	util.joinEvent(email, hostName, 0);
+		        	Cookie lobbyName = new Cookie("lobbyName", hostName);
+		        	lobbyName.setMaxAge(3600);
+		        	response.addCookie(lobbyName);
 		        	return "redirect:/lobby";
 	        	}else {
 	        		return "drink";
@@ -63,6 +66,9 @@ public class DrinkController {
 			if (!email.isBlank()) {
 				if (util.eventExists(joinName)) {
 					util.joinEvent(email, joinName, 0);
+					Cookie lobbyName = new Cookie("lobbyName", joinName);
+		        	lobbyName.setMaxAge(3600);
+		        	response.addCookie(lobbyName);
 					return "redirect:/lobby";
 				}
 				else {
@@ -79,6 +85,7 @@ public class DrinkController {
 		
 	}
 	
+	// Read them cookies
 	public Optional<String> readCookie(String key, HttpServletRequest request) {
 	    return Arrays.stream(request.getCookies())
 	      .filter(c -> key.equals(c.getName()))

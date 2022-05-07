@@ -159,7 +159,6 @@ public class dbUtility {
 		} catch (SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}
-	
 	}
 	
 	public boolean eventExists (String event_name)
@@ -192,6 +191,30 @@ public class dbUtility {
 		return result;
 	}
 	
+	public void addDrink (String email, String event_name, int amount)
+	{
+		try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL AddDrink(?, ?, ?) }";
+        
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, email);
+			stmt.setString(2, event_name);
+			stmt.setInt(3, amount);
+			
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+	}	
+
 	public LinkedList<String> getParticipants (String event_name)
 	{
 		LinkedList<String> result = new LinkedList<String>();

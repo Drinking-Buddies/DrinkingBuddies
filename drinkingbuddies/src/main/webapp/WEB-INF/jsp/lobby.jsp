@@ -6,6 +6,25 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<title>Drink Page</title>
 
+	<%
+       	Cookie[] cookies = null;
+       	Cookie myCookie = null;
+		
+       	// need to deal with space later!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       	
+		cookies = request.getCookies();
+		boolean login = false;
+		String roomName = "";
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i++){
+				if (cookies[i].getName().equals("lobbyName")){
+					myCookie = cookies[i];
+					roomName = cookies[i].getValue();
+				}
+			}
+		}
+    %>
+
 </head>
 <body>
 	<div class = "container">
@@ -25,7 +44,11 @@
 
 		<div id = "lobbyDiv">
 			<div class="greeting">
-				<h1>Room: ${roomName}</h1>
+				<h1>
+					<%
+						out.println("Lobby: "+roomName);
+					%>
+				</h1>
 			</div>
 			<div class="user" style="margin-top:180px; margin-left:8%; width: 180px">
 				1
