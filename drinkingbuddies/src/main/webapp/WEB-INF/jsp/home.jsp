@@ -1,5 +1,6 @@
 <%@ page language="java" import = "java.util.*" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="com.drinkingbuddies.drinkingbuddies.classes.user" %>
 <HTML>
 <head>
 	<link rel="stylesheet" type="text/css" href="/index.css">
@@ -79,9 +80,14 @@
 		<div id = "friendsList">
 		<!-- 
 			<%
+<<<<<<< HEAD
 			/*
 				List<Friend> friendsList;
 				friendsList = (List<Friend>) request.getAttribute("friendsList");
+=======
+				List<user> friendsList;
+				friendsList = (List<user>) request.getAttribute("friendsList");
+>>>>>>> d848270ac55831e48f2603739f688717159c150c
 				if(friendsList != null && !friendsList.isEmpty())
 				{
 					for(int i = 0; i < friendsList.size(); i++)
