@@ -14,8 +14,15 @@ public class dbUtility {
 	private static final String DBPassword = "root";
  
 	public User getUser (String email) {
+		
 		User user = new User();
 		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 		String sql = "SELECT * FROM Users WHERE email = ?";
 		
 		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
@@ -47,7 +54,7 @@ public class dbUtility {
 	
 	public void newUser (String email, String username, String pass, String birthday, String phone, String emergency_phone, int weight, String bio) {
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -76,7 +83,7 @@ public class dbUtility {
 	public boolean userExists(String email, String pass) {
 		boolean result = false;
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -108,7 +115,7 @@ public class dbUtility {
 	public void newEvent (String start_time, String event_name) {
 		
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -133,7 +140,7 @@ public class dbUtility {
 	public void joinEvent (String email, String event_name, int amount)
 	{
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -159,7 +166,7 @@ public class dbUtility {
 	{
 		boolean result = false;
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -190,7 +197,7 @@ public class dbUtility {
 		LinkedList<String> result = new LinkedList<String>();
 		
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -219,7 +226,7 @@ public class dbUtility {
 	public void friendRequest (String requester, String receiver)
 	{
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -243,7 +250,7 @@ public class dbUtility {
 	public void acceptFriend (String requester, String receiver)
 	{
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -269,7 +276,7 @@ public class dbUtility {
 		LinkedList<String> result = new LinkedList<String>();
 		
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -299,7 +306,7 @@ public class dbUtility {
 		boolean result = false;
 		
 		try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -324,6 +331,7 @@ public class dbUtility {
 		}
 		
 		return result;
-	}
+	} 
+	
 	
 }
