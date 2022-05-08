@@ -268,23 +268,105 @@ h1 {
 	border: 1px solid black;
 	border-radius: 5px;
 }
-
-#addDrink{
-	margin-top: 40px;
-	border-radius: 4px;
-	width: 180px;
-	text-align: center;
-	background-color: #FFA24C;
-}
-
 #addShot{
 	border-style: none;
 	background-color: #FFA24C;
 	color:white;
 	font-weight: 600;
 	font-size: x-large;
-	width: 100%;
 	border-radius: 4px;
+	width :100%;
+	height: 85%;
+	margin-top:45px;
 	text-decoration: none;
 }
+#bioBlock{
+	border-radius: 6px;
+	margin-right: 40px;
+	width: 1000px;
+	height: 150px;
+	border-style: solid;
+	border-color:white;
+	border-width: 3px;
+	background-color: lightyellow;
+	text-align: left;
+	font-family: 'Gill Sans', sans-serif;
+}
+#userBio{
+	font-family: "Gill Sans", sans-serif;
+	font-size: medium;
+	margin-left:5px;
+	margin-right:5px;
+}
+.greeting{
+	display: flex;
+}
+.editProfileButton{
+	background-color: #FFDD2A;
+	height:20px;
+	width: 160px;
+	margin-left: 30%;
+	margin-top: 2%;
+	text-align: center;
+	padding: 10px;
+	border-radius: 3px;
+}
+#editProfile{
+	text-decoration: none;
+	color:black;
+	font-size: medium;
+	font-family: "Gill Sans", sans-serif;
+}
+.userInfo{
+	margin-top: 20px;
+	margin-left: 5px;
+	font-size: x-small;
+	color:rgb(78,78,70);
+	display: flex;
+}
+.userInfo h2{
+	margin-top:5px;
+	margin-bottom: 5px;
+}
+.friendblock{
+	display: flex;
+	margin-top: 10px;
+}
+#friendListBox{
+	border-radius: 3px;
+	background-color: lightyellow;
+	width: 420px;
+	height: 230px;
+	margin-bottom: 10px;
+}
+#addFriend{
+	margin-left: 30px;
+	margin-top: 80px;
+	width: 500px;
+}
+#addFriendButton{
+	margin-top:0px;
+	margin-left: 10px;
+	background-color: #FFDD2A;
+	width: 450px;
+	height:30px;
+	text-align: center;
+	border-radius: 5px;
+	padding-top:5px;
+}
 
+#addDrink{
+	margin-top: 30px;
+	border-radius: 4px;
+	width: 180px;
+	text-align: center;
+	background-color: #FFA24C;
+}
+
+#requestMsg{
+	margin-left:10px;
+	font-family: "Gill Sans", sans-serif;
+	margin-bottom: 0px;
+	font-size: medium;
+	color: #ff5757;
+}

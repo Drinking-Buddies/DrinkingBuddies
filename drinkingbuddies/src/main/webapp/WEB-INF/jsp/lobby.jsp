@@ -38,7 +38,7 @@
 			<img class = "dbLogo" src = "/DrinkingBuddies_Assets/logo_Nav.png" style="margin-top: 30%">
 			<br/>
 			<div class = "mainNav" style="margin-top: 40%">
-				<a href = "${pageContext.servletContext.contextPath}/leave">Leave</a>
+				<a href = "/home">Leave</a>
 			</div>
 		</div>
 
@@ -56,7 +56,6 @@
 				<div id = "addDrink">
 					<a href="${pageContext.servletContext.contextPath}/addShot" id="addShot"> Add Shot </a>
 				</div>
-
 			</div>
 			<div class="user" style="margin-top: 55px;margin-left: 15%;width: 180px">
 				<c:choose>

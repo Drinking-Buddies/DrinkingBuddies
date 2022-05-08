@@ -27,6 +27,7 @@
 				<a href = "/login">login / register</a>
 			</div>
 		</div>
+
 		<div id = "loginDiv">
 			<form id = "loginForm"method = "POST">
 				<h2>Login</h2>

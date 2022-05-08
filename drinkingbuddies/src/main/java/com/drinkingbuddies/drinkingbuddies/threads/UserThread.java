@@ -21,7 +21,6 @@ public class UserThread implements Runnable{
 	
 	public void run() {
 		amountDrinked = util.getAmountDrinked(email, lobbyName);
-		System.out.println(amountDrinked);
 	}
 
 	public synchronized int getAmountDrinked() {
@@ -45,4 +44,5 @@ public class UserThread implements Runnable{
 	public void finishSession() {
 		isFinished = true;
 	}
+
 }
