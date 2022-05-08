@@ -68,7 +68,7 @@ public class ProfileController {
 		map.put("weight",curUser.getWeight());
 		map.put("gender",curUser.getGender());
 		map.put("emergencyNum",curUser.getEmergency_phone());
-		if(!removeFriendEmail.equals("")){
+		if(!removeFriendEmail.isBlank()){
 			util.removeFriend(userEmail,removeFriendEmail);
 			LinkedList<String> friends = util.getFriends(curUser.getEmail());
 			request.setAttribute("friends",friends);
@@ -77,8 +77,20 @@ public class ProfileController {
 			String msg = "";
 			// Use try clause to safely get the current user's email
 			// Use util function to get receiver's email
-			msg = util.friendRequest(userEmail,receiverEmail);
-			map.put("msg", msg);
+			LinkedList<String> currentFriends = util.getFriends(userEmail);
+			boolean canAdd = true;
+			for (String f : currentFriends) {
+				if (f.equals(receiverEmail)) {
+					canAdd = false;
+					break;
+				}
+			}
+			if (canAdd) {
+				msg = util.friendRequest(userEmail,receiverEmail);
+				map.put("msg", msg);
+			}else {
+				map.put("msg", "You guys are friends already...");
+			}
 			LinkedList<String> friends = util.getFriends(curUser.getEmail());
 			request.setAttribute("friends",friends);
 			return "profile";

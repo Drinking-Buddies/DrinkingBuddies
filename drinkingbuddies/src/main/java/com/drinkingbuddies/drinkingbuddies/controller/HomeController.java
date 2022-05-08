@@ -41,9 +41,10 @@ public class HomeController {
 		}
 		return "home";
 	}
-
-	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.POST)
-	public String homePage(HttpServletRequest request) {
+	
+	
+	@RequestMapping(value= {"/acceptFriend"}, method = RequestMethod.POST)
+	public String acceptFriend(HttpServletRequest request) {
 		// check if user's logged in
 		String email = "";
 		if (request.getCookies() != null) {
@@ -52,25 +53,27 @@ public class HomeController {
 			} catch (Exception e) {
 				return "home";
 			}
-			// Direct here via post so either accept a request or dismiss
-			LinkedList<String> allRequests = util.getPendingRequests(email);
-
+		}
+		
+		// Direct here via post so either accept a request or dismiss
+		LinkedList<String> allRequests = util.getPendingRequests(email);
+		
+		if (!allRequests.isEmpty()) {
 			util.acceptFriend(allRequests.get(0),email);
 			// After accpting, it is removed from sql.
-
 			allRequests = util.getPendingRequests(email);
-			if(allRequests!=null) {
-				if (allRequests.size() != 0) {
-					User temp = util.getUser(allRequests.get(0));
-					request.setAttribute("curRequest",temp.getUsername());
-				}
+			if (!allRequests.isEmpty()) {
+				User temp = util.getUser(allRequests.get(0));
+				request.setAttribute("curRequest",temp.getUsername());
 			}
 		}
-		return "home";
+		return "redirect:/home";
 	}
 
-
-
+	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.POST)
+	public String homePage(HttpServletRequest request) {
+		return "home";
+	}
 
 	public Optional<String> readCookie(String key, HttpServletRequest request) {
 		return Arrays.stream(request.getCookies())

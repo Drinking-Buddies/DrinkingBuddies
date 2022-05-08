@@ -1,3 +1,5 @@
+USE buddy; 
+
 DROP PROCEDURE if exists NewUser;
 DELIMITER $$
 CREATE PROCEDURE NewUser (IN email VARCHAR(50),
@@ -111,7 +113,7 @@ CREATE PROCEDURE AcceptFriend (IN requester VARCHAR(50),
 BEGIN
 	UPDATE Friendships f
     SET pending = FALSE
-    WHERE f.requester = requester AND f.receiver = receiver;
+    WHERE (f.requester = requester AND f.receiver = receiver);
 END$$
 DELIMITER ;
 
@@ -121,11 +123,11 @@ CREATE PROCEDURE GetFriends (IN email VARCHAR(50))
 BEGIN
 	SELECT f.receiver
     FROM Friendships f
-    WHERE f.requester = email
+    WHERE f.requester = email and f.pending = false
     UNION
     SELECT f.requester
     FROM Friendships f
-    WHERE f.receiver = email;
+    WHERE f.receiver = email and f.pending = false;
 END$$
 DELIMITER ;
 
@@ -133,10 +135,6 @@ DROP PROCEDURE if exists GetPendingFriend;
 DELIMITER $$
 CREATE PROCEDURE GetPendingFriend (IN email VARCHAR(50))
 BEGIN
-	SELECT f.receiver
-    FROM Friendships f
-    WHERE f.requester = email and f.pending = true
-    UNION
     SELECT f.requester
     FROM Friendships f
     WHERE f.receiver = email and f.pending = true; 

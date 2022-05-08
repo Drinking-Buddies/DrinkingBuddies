@@ -50,6 +50,9 @@
 		</div>
 		<div id = "homePage">
 			<h1>Welcome <%= name %>!</h1>
+			<%
+				if (login){
+			%>
 			<h2>Here's your stats from the past few days: </h2>
 			<div id = "drinkingHistory">
 			<!--
@@ -70,7 +73,7 @@
 				*/
 			-->
 			</div>
-			<h2>Friends currently online: </h2>
+			<h2>Your pending friend requests: </h2>
 
 			<div id="requestDisplay">
 				<%
@@ -78,11 +81,18 @@
 					if(curRequest!=null){
 						out.print("<h3>"+curRequest+" wants to be your friend.</h3>");
 						out.print("<div id=\"acceptFriendButton\">");
-						out.print("<form method=\"Post\"><button type = \"submit\">");
+						out.print("<form action=\"/acceptFriend\" method=\"Post\"><button id = 'acceptFriend' type = \"submit\">");
 						out.print("Accept</button></form></div>");
+					}else{
+						out.println("<h3> You have no pending requests... </h3>");
 					}
 				%>
 			</div>
+			<%
+				}else{
+			%>
+				<h2>Please login to see your stats! </h2>
+			<% } %>
 		</div>
 	</div>
 	
