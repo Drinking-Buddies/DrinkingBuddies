@@ -11,12 +11,21 @@ public class User {
     private String emergency_phone;
     private int weight;
     private String bio;
+	private String gender;
     private ArrayList<User> friends;
 
     public User() {}
-    
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public User(String email, String username, String pass, String birthday, String phone, String emergency_phone,
-			int weight, String bio) {
+				int weight, String bio, String gender) {
 		this.email = email;
 		this.username = username;
 		this.pass = pass;
@@ -25,6 +34,7 @@ public class User {
 		this.emergency_phone = emergency_phone;
 		this.weight = weight;
 		this.bio = bio;
+		this.gender = gender;
 	}
 
 
