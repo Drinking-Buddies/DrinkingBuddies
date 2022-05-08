@@ -35,7 +35,7 @@ public class DrinkController {
 		// Need to fix the bug with guest
 
 		Optional<String> read = readCookie("userEmail", request);
-		String email = "guest";
+		String email = "Guest";
 		if (read.isPresent()) {
 			email = read.get();
 		}
@@ -71,7 +71,9 @@ public class DrinkController {
 			// check if the room exists
 			if (!email.isBlank()) {
 				if (util.eventExists(joinName)) {
-					util.joinEvent(email, joinName, 0);
+					if (!email.equals("Guest")) {
+						util.joinEvent(email, joinName, 0);
+					}
 					Cookie lobbyName = new Cookie("lobbyName", joinName);
 		        	lobbyName.setMaxAge(3600);
 		        	response.addCookie(lobbyName);

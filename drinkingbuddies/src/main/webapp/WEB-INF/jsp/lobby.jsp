@@ -16,11 +16,15 @@
 		cookies = request.getCookies();
 		boolean login = false;
 		String roomName = "";
+		String userEmail = "";
 		if (cookies != null){
 			for (int i = 0; i < cookies.length; i++){
 				if (cookies[i].getName().equals("lobbyName")){
 					myCookie = cookies[i];
 					roomName = cookies[i].getValue();
+				}
+				if (cookies[i].getName().equals("userEmail")){
+					userEmail = cookies[i].getValue();
 				}
 			}
 		}
@@ -54,7 +58,13 @@
 			<div class="user" style="margin-top:180px; margin-left:8%; width: 180px">
 				<p>${seat1}</p>
 				<div id = "addDrink">
-					<a href="${pageContext.servletContext.contextPath}/addShot" id="addShot"> Add Shot </a>
+					<%
+						if (!userEmail.isBlank()){
+					%>
+						<a href="${pageContext.servletContext.contextPath}/addShot" id="addShot"> Add Shot </a>
+					<%
+						}
+					%>
 				</div>
 			</div>
 			<div class="user" style="margin-top: 55px;margin-left: 15%;width: 180px">

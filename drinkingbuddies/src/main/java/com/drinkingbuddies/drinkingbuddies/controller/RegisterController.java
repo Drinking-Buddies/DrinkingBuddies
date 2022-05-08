@@ -41,7 +41,7 @@ public class RegisterController {
 		
 		// Add to database and cookie if no problem is detected
 		if (errorMap.isEmpty()) {
-			util.newUser(email, userID, password, birthDate, phone, emergency, myWeight, "I am a person!");
+			util.newUser(email, userID, password, birthDate, phone, emergency, myWeight, "I am a person!", gender);
 			Cookie usrName = new Cookie("userName", userID);
 			Cookie usrEmail = new Cookie("userEmail", email);
 			usrName.setMaxAge(3600);

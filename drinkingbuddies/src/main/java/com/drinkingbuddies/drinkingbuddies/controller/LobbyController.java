@@ -72,8 +72,10 @@ public class LobbyController {
         		seat++;
     		}
     	}
-    	UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, 0, 1);
-    	allPlayers.add(0, mePlayer);
+    	if (!myUsername.equals("Guest") && !myEmail.equals("Guest")) {
+    		UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, 0, 1);
+        	allPlayers.add(0, mePlayer);
+    	}
     	executeThreads();
     	
     	// Get amount of drinks

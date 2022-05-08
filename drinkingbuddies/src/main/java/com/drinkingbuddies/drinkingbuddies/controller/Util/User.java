@@ -68,20 +68,23 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
 	public String getEmergency_phone() {
 		return emergency_phone;
 	}
+	
 	public void setEmergency_phone(String emergency_phone) {
 		this.emergency_phone = emergency_phone;
 	}
+	
 	public int getWeight() {
 		return weight;
 	}
+	
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-
-
+	
 	public String getBio() {
 		return bio;
 	}

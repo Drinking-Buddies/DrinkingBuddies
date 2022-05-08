@@ -37,6 +37,7 @@ public class dbUtility {
 				if (rs.next()) {
 					user.setEmail(rs.getString("email")); 
 					user.setUsername(rs.getString("username")); 
+					user.setGender(rs.getString("sex"));
 					user.setPass(rs.getString("pass")); 
 					user.setBirthday(rs.getString("birthday"));
 					user.setPhone(rs.getString("phone"));
@@ -53,7 +54,7 @@ public class dbUtility {
 		return user;
 	}
 	
-	public void newUser (String email, String username, String pass, String birthday, String phone, String emergency_phone, int weight, String bio) {
+	public void newUser (String email, String username, String pass, String birthday, String phone, String emergency_phone, int weight, String bio, String gender) {
 		try {
             Class.forName("com.mysql.jdbc.Driver");
 
@@ -61,18 +62,20 @@ public class dbUtility {
             e.printStackTrace();
         }
 		
-		String sql = "{ CALL NewUser(?, ?, ?, ?, ?, ?, ?, ?) }";
+		String sql = "{ CALL NewUser(?, ?, ?, ?, ?, ?, ?, ?, ?) }";
 		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
 			 CallableStatement stmt = conn.prepareCall(sql);) {
 
 			stmt.setString(1, email);
 			stmt.setString(2, username);
 			stmt.setString(3, pass);
-			stmt.setString(4, birthday);
-			stmt.setString(5, phone);
-			stmt.setString(6, emergency_phone);
-			stmt.setInt(7, weight);
-			stmt.setString(8, bio);
+			stmt.setString(4, gender);
+			stmt.setString(5, birthday);
+			stmt.setString(6, phone);
+			stmt.setString(7, emergency_phone);
+			stmt.setInt(8, weight);
+			stmt.setString(9, bio);
+			
 			
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {

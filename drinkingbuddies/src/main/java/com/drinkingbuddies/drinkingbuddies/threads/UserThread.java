@@ -20,7 +20,11 @@ public class UserThread implements Runnable{
 	}
 	
 	public void run() {
-		amountDrinked = util.getAmountDrinked(email, lobbyName);
+		// only do database stuff if it's not a guest
+		if (!username.equals("Guest")){
+			amountDrinked = util.getAmountDrinked(email, lobbyName);
+		}
+		
 	}
 
 	public synchronized int getAmountDrinked() {
@@ -34,7 +38,11 @@ public class UserThread implements Runnable{
 	
 	// we can change this to more than 1 later
 	public synchronized void addShot() {
-		util.addDrink(email, lobbyName, 1);
+		if (!username.equals("Guest")){
+			util.addDrink(email, lobbyName, 1);
+		}else {
+			amountDrinked += 1;
+		}
 	}
 
 	public synchronized String getUsername() {
