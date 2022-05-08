@@ -42,11 +42,11 @@ public class HomeController {
 				String date = details.split(",")[1];
 				
 				if (amount <= 10) {
-					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+e.getValue()+" shots. That's not too much.");
+					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+amount+" shots. That's not too much.");
 				}else if (amount > 10 && amount <= 20) {
-					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+e.getValue()+" shots. You can certainly drink...");
+					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+amount+" shots. You can certainly drink...");
 				}else {
-					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+e.getValue()+" shots. Did you wake up in ICU?");
+					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+amount+" shots. Did you wake up in ICU?");
 				}
 				
 			}
