@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 public class dbUtility {
 	private static final String DB = "jdbc:mysql://localhost:3306/buddy";
 	private static final String DBUserName = "root";
-	private static final String DBPassword = "1029384756";
+	private static final String DBPassword = "root";
  
 	public User getUser (String email) {
 		
