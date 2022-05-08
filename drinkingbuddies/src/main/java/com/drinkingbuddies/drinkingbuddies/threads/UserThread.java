@@ -21,29 +21,24 @@ public class UserThread implements Runnable{
 	
 	public void run() {
 		amountDrinked = util.getAmountDrinked(email, lobbyName);
-		System.out.println(username+": "+amountDrinked);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(amountDrinked);
 	}
 
-	public int getAmountDrinked() {
+	public synchronized int getAmountDrinked() {
+		//System.out.println(username+": "+amountDrinked);
 		return amountDrinked;
 	}
 
-	public int getSeatNum() {
+	public synchronized int getSeatNum() {
 		return seatNum;
 	}
 	
 	// we can change this to more than 1 later
-	public void addShot() {
+	public synchronized void addShot() {
 		util.addDrink(email, lobbyName, 1);
 	}
 
-	public String getUsername() {
+	public synchronized String getUsername() {
 		return username;
 	}
 	

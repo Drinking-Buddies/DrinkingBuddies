@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,10 +43,11 @@ public class LobbyController {
 	}
 	
     @RequestMapping(value = "/lobby", method = RequestMethod.GET)
-    public String lobbyPage(HttpServletRequest request){
+    public String lobbyPage(ModelMap model, HttpServletRequest request){
+    	allPlayers.clear();
+    	
     	String lobbyName = readCookie("lobbyName", request).get();
     	LinkedList<String> allPlayerEmails = util.getParticipants(lobbyName);
-    	System.out.println(util.getAmountDrinked("dd@usc.edu", lobbyName));
     	
     	String myEmail = "Guest";
     	String myUsername = "Guest";
@@ -72,7 +74,20 @@ public class LobbyController {
     	UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, 0, 1);
     	allPlayers.add(0, mePlayer);        	
     	executeThreads();
+    	
+    	// Get amount of drinks
+    	passValue(model);
+    	System.out.println("Thread Num: "+allPlayers.size());
         return "lobby";
+    }
+    
+    private void passValue(ModelMap model) {
+    	String place = "seat";
+    	int num = 1;
+    	for (UserThread u : allPlayers) {
+    		model.put(place.concat(Integer.toString(num)), u.getAmountDrinked()+" "+u.getUsername());
+    		num++;
+    	}
     }
     
     private void executeThreads() {
@@ -85,6 +100,8 @@ public class LobbyController {
 				e.printStackTrace();
 			}
     	}
+    	ex.shutdown();
+    	while(!ex.isTerminated()) {}
     }
 	
 	// Read them cookies

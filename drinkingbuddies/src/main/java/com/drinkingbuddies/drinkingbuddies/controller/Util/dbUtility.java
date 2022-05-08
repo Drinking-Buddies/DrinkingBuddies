@@ -272,7 +272,7 @@ public class dbUtility {
 		
 	} 
 	
-	public LinkedList<String> getFriends (int email)
+	public LinkedList<String> getFriends (String email)
 	{
 		LinkedList<String> result = new LinkedList<String>();
 		
@@ -281,7 +281,7 @@ public class dbUtility {
 		try{
 			CallableStatement stmt = conn.prepareCall(sql);
 
-			stmt.setInt(1, email);
+			stmt.setString(1, email);
 			
 			ResultSet rs = stmt.executeQuery();
 			

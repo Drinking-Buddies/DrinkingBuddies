@@ -3,6 +3,7 @@
 	<link rel="stylesheet" type="text/css" href="/index.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<title>Drink Page</title>
 
@@ -51,32 +52,81 @@
 				</h1>
 			</div>
 			<div class="user" style="margin-top:180px; margin-left:8%; width: 180px">
-				1
+				<p>${seat1}</p>
 				<div id = "addDrink">
 					<a href="${pageContext.servletContext.contextPath}/addShot" id="addShot"> Add Shot </a>
 				</div>
 
 			</div>
 			<div class="user" style="margin-top: 55px;margin-left: 15%;width: 180px">
-				2
+				<c:choose>
+					<c:when test="${empty seat2}">
+						<p>no one is sitting here...</p>
+					</c:when>
+					<c:otherwise>
+						<p>${seat2}</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="user" style="margin-top: 0px;margin-left: 42%;width: 180px">
-				3
+				<c:choose>
+					<c:when test="${empty seat3}">
+						<p>no one is sitting here...</p>
+					</c:when>
+					<c:otherwise>
+						<p>${seat3}</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="user" style="margin-top: 55px;margin-left: 68%;width: 180px">
-				4
+				<c:choose>
+					<c:when test="${empty seat4}">
+						<p>no one is sitting here...</p>
+					</c:when>
+					<c:otherwise>
+						<p>${seat4}</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="user" style="margin-top: 180px;margin-left: 75%;width: 180px">
-				5
+				<c:choose>
+					<c:when test="${empty seat5}">
+						<p>no one is sitting here...</p>
+					</c:when>
+					<c:otherwise>
+						<p>${seat5}</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="user" style="margin-top: 330px;margin-left: 71%;width: 180px">
-				6
+				<c:choose>
+					<c:when test="${empty seat6}">
+						<p>no one is sitting here...</p>
+					</c:when>
+					<c:otherwise>
+						<p>${seat6}</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="user"style="margin-top: 420px;margin-left: 42%;width: 180px">
-				7
+				<c:choose>
+					<c:when test="${empty seat7}">
+						<p>no one is sitting here...</p>
+					</c:when>
+					<c:otherwise>
+						<p>${seat7}</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="user"style="margin-top: 330px;margin-left: 12%;width: 180px">
-				8
+				<c:choose>
+					<c:when test="${empty seat8}">
+						<p>no one is sitting here...</p>
+					</c:when>
+					<c:otherwise>
+						<p>${seat8}</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="table">
 				<img class = "tables" src = "/DrinkingBuddies_Assets/table.png">
