@@ -29,7 +29,7 @@
 		</div>
 
 
-		<div class="profilePage" style="width:100%;height:100%;margin-left: 60px; margin-top:40px">
+		<div class="profilePage" style="width:100%;height:95%;margin-left: 60px; padding-top:20px">
 			<div class="greeting">
 
 			<div class="profileUser"><h1>${userName}'s profile</h1></div>
@@ -41,10 +41,16 @@
 		</div>
 		<div class="userInfo">
 			<div>
-			<h2 id = "userEmail">Email: ${email}</h2>
-			<h2 id = "userPhoneNum">Phone: ${phone}</h2>
-			<h2 id = "userDOB">DOB: ${DOB}</h2>
+				<h2 id = "userEmail">Email: ${email}</h2>
+				<h2 id = "userPhoneNum">Phone: ${phone}</h2>
+				<h2 id = "userDOB">DOB: ${DOB}</h2>
 			</div>
+			<div>
+				<h2 id="userWeight">Weight: ${weight}</h2>
+				<h2 id="userGender">Gender: ${gender}</h2>
+			</div>
+
+
 			<div class="editProfileButton">
 				<a href = "/editProfile" id="editProfile">Edit Profile</a>
 			</div>
