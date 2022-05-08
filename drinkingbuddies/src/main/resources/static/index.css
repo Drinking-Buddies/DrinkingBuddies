@@ -278,8 +278,8 @@ h1 {
 }
 #bioBlock{
 	border-radius: 6px;
-	margin-right: 40px;
-	width: 1000px;
+	width: 70%;
+	min-width: 680px;
 	height: 150px;
 	border-style: solid;
 	border-color:white;
@@ -325,32 +325,30 @@ h1 {
 	margin-bottom: 5px;
 }
 .friendblock{
+	width: 90%;
 	display: flex;
 	margin-top: 10px;
-	overflow: scroll;
+	flex-direction: row;
 }
 #friendListBox{
 	border-radius: 6px;
 	background-color: lightyellow;
-	width: 420px;
-	height: 200px;
+	width: 390px;
+	height: 160px;
 	position:absolute;
 	margin-bottom: 20px;
+	overflow-y: auto;
 }
-#addFriend{
-	margin-left: 330px;
-	margin-top: 80px;
-	width: 500px;
-}
+
 #addFriendButton{
 	margin-top:0px;
 	margin-left: 10px;
 	background-color: #FFDD2A;
-	width: 450px;
-	height:30px;
+	width: 45%;
+	height:35px;
 	text-align: center;
 	border-radius: 5px;
-	padding-top:5px;
+	border: none;
 }
 
 #addDrink{
@@ -442,7 +440,7 @@ textarea {
 	font-size: 18px;
 	font-weight: 700;
 }
-#friend{
+.friend{
 	display: flex;
 	font-family: "Gill Sans", sans-serif;
 	font-size: medium;
@@ -452,8 +450,8 @@ textarea {
 	border-bottom-style: solid;
 	border-color:lightgrey;
 }
-#removeBut{
-	margin-left: 230px;
+.removeBut{
+	margin-left: 190px;
 	margin-top:2px;
 	margin-bottom: 0px;
 	background-color: rgb(170,170,150);
@@ -461,5 +459,22 @@ textarea {
 	border:none;
 	font-family: "Gill Sans", sans-serif;
 	color:white;
+}
 
+#friendTextBox{
+	width: 45%;
+	margin: 10px;
+	height: 40px;
+	display: inline-block;
+}
+
+.friendblockContent{
+	width: 50%;
+	min-width: 450px;
+	height: auto;
+}
+
+#addFriend{
+	margin-top: 45px;
+	margin-left: 10px;
 }

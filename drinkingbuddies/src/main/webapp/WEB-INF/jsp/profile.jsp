@@ -78,7 +78,7 @@
 		</div>
 
 		<div class="friendblock">
-			<div>
+			<div class = "friendblockContent">
 				<h2>Your Friends: </h2>
 				<div id="friendListBox">
 
@@ -87,25 +87,25 @@
 						if(friends != null && !friends.isEmpty())
 						{
 							for(int i = 0; i < friends.size(); i++) {
-								out.println("<div id=\"friend\"> -  "+(new dbUtility()).getUser(friends.get(i)).getUsername()+
+								out.println("<div class=\"friend\"> -  "+(new dbUtility()).getUser(friends.get(i)).getUsername()+
 										"<form method=\"Post\"> <button name =\"removeFriendEmail\" " +
-										"value ="+friends.get(i)+" type = \"submit\" id=\"removeBut\"> REMOVE FRIEND" +
+										"value ="+friends.get(i)+" type = \"submit\" class=\"removeBut\"> REMOVE FRIEND" +
 										"</button></form></div>");
 							}
 						}
 					%>
 				</div>
 			</div>
-			<form id = "addFriend" method = "POST">
-				<p id="requestMsg">${msg}
-				</p>
-				<input class = "textBox" type = "text" name = "receiverEmail" style="color:rgb(50,50,50)" placeholder="Enter your friend's email...">
-				<div id="addFriendButton">
-					<button type = "submit" style="background:none;border:none;font-family: 'Gill Sans', sans-serif;
-					font-size: medium">
-						Send Friend Request</button>
-				</div>
-			</form>
+			<div class = "friendblockContent">
+				<form id = "addFriend" method = "POST">
+					<p id="requestMsg">${msg}
+					</p>
+					<input id = "friendTextBox" type = "text" name = "receiverEmail" style="color:rgb(50,50,50)" placeholder="Enter your friend's email...">
+					<br/>
+					<button id="addFriendButton" type = "submit"> Send Friend Request</button>
+				</form>
+			</div>
+			
 		</div>
 
 

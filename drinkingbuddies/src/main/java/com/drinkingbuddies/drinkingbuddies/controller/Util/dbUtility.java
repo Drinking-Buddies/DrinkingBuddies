@@ -480,8 +480,6 @@ public class dbUtility {
 
 			stmt.setString(1, requester);
 			stmt.setString(2, receiver);
-			System.out.println(requester);
-			System.out.println(receiver);
 
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
