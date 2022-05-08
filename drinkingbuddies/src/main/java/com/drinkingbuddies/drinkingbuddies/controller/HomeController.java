@@ -42,9 +42,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value= {"/acceptFriend"}, method = RequestMethod.POST)
-	public String acceptFriend(@RequestParam(defaultValue = "") String reqEmail, HttpServletRequest request) {
-		System.out.println(reqEmail);
-		
+	public String acceptFriend(@RequestParam(defaultValue = "") String reqEmail, HttpServletRequest request) {		
 		// check if user's logged in
 		String email = "";
 		if (request.getCookies() != null) {
