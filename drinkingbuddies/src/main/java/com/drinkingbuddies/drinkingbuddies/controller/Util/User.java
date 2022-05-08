@@ -1,5 +1,7 @@
 package com.drinkingbuddies.drinkingbuddies.controller.Util;
 
+import java.util.ArrayList;
+
 public class User {
 	private String email;
 	private String username;
@@ -9,7 +11,8 @@ public class User {
     private String emergency_phone;
     private int weight;
     private String bio;
-    
+    private ArrayList<User> friends;
+
     public User() {}
     
 	public User(String email, String username, String pass, String birthday, String phone, String emergency_phone,

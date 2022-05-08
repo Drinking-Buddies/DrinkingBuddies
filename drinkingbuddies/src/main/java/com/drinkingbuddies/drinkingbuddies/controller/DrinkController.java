@@ -32,13 +32,7 @@ public class DrinkController {
 	public String homePage(ModelMap model, @RequestParam(defaultValue = "") String hostName, 
 			@RequestParam String joinName, HttpServletResponse response, HttpServletRequest request) {
 		
-		// Need to fix the bug with guest
-		
-		Optional<String> read = readCookie("userEmail", request);
-		String email = "guest";
-		if (read.isPresent()) {
-			email = read.get();
-		}
+		String email = readCookie("userEmail", request).get();
 		
 		if (hostName.isBlank() && joinName.isBlank()) {
 			model.put("errorMsg", "Please enter a lobby name");
