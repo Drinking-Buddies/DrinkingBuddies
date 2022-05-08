@@ -33,7 +33,7 @@ public class DrinkController {
 			@RequestParam String joinName, HttpServletResponse response, HttpServletRequest request) {
 		
 		// Need to fix the bug with guest
-		
+
 		Optional<String> read = readCookie("userEmail", request);
 		String email = "guest";
 		if (read.isPresent()) {

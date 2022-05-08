@@ -11,9 +11,6 @@
 </head>
 <body>
 	<div class = "container">
-	<%
-		User currentUser = (User) request.getAttribute("user");
-	%>
 		<div class = "navBar">
 			<div class = "text-center">
 				<div class = "display-inline">
@@ -30,14 +27,51 @@
 				<a href = "/login">login / register</a>
 			</div>
 		</div>
-		<h1 id = "userID">${userID}</h1>
-		<a href = "/editProfile">Edit Profile</a>
-		<h2 id = "userName">${userName}</h2>
-		<p id = "userBio">${bio}</p>
-		<h2 id = "userEmail">${email}</h2>
-		<h2 id = "userPhoneNum">${phone}</h2>
-		<h2 id = "userDOB">${DOB}</h2>
-		<h2>Your Friends: </h2>
+
+
+		<div class="profilePage" style="width:100%;height:100%;margin-left: 60px; margin-top:40px">
+			<div class="greeting">
+
+			<div class="profileUser"><h1>${userName}'s profile</h1></div>
+		</div>
+
+		<h2 style="margin-bottom: 0px;margin-left: 5px">BIO:</h2>
+		<div id="bioBlock">
+			<p id = "userBio">${bio}</p>
+		</div>
+		<div class="userInfo">
+			<div>
+			<h2 id = "userEmail">Email: ${email}</h2>
+			<h2 id = "userPhoneNum">Phone: ${phone}</h2>
+			<h2 id = "userDOB">DOB: ${DOB}</h2>
+			</div>
+			<div class="editProfileButton">
+				<a href = "/editProfile" id="editProfile">Edit Profile</a>
+			</div>
+		</div>
+
+		<div class="friendblock">
+			<div>
+				<h2>Your Friends: </h2>
+				<div id="friendListBox">
+					<%
+						LinkedList<String> friends = (LinkedList<String>) request.getAttribute("friends");
+					%>
+				</div>
+			</div>
+
+			<form id = "addFriend" method = "POST">
+				<p id="requestMsg">${msg}
+				</p>
+				<input class = "textBox" type = "text" name = "userEmail" style="color:rgb(50,50,50)" placeholder="Enter your friend's email...">
+				<div id="addFriendButton">
+					<button type = "submit" style="background:none;border:none;font-family: 'Gill Sans', sans-serif;
+					font-size: medium">
+						Send Friend Request</button>
+				</div>
+			</form>
+		</div>
+
 		<div id = "friendsList">
 			<%--
 			<%
@@ -58,11 +92,9 @@
 				
 			%>
 			--%>
-		</div> 
-		<form id = "addFriend" method = "POST">
-			<input class = "textBox" type = "text" name = "friendName">
-			<button id = "addFriendButton" type = "submit">Add</button>
-		</form>
-	</div>
+		</div>
+
+
+	</div></div>
 </body>
 </html>

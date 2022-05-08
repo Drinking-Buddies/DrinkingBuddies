@@ -10,12 +10,11 @@ import java.util.concurrent.Executors;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.drinkingbuddies.drinkingbuddies.controller.Util.User;
 import com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility;
@@ -42,11 +41,13 @@ public class LobbyController {
 	}
 	
     @RequestMapping(value = "/lobby", method = RequestMethod.GET)
-    public String lobbyPage(HttpServletRequest request){
+    public String lobbyPage(ModelMap model, HttpServletRequest request){
+    	allPlayers.clear();
+
     	String lobbyName = readCookie("lobbyName", request).get();
     	LinkedList<String> allPlayerEmails = util.getParticipants(lobbyName);
-    	System.out.println(util.getAmountDrinked("dd@usc.edu", lobbyName));
     	
+    	// Need to check if the user is actually me
     	String myEmail = "Guest";
     	String myUsername = "Guest";
     	
@@ -54,12 +55,14 @@ public class LobbyController {
     	if (tmpUserEmail.isPresent()) {
     		myEmail = tmpUserEmail.get();
     	}
-
+    	
+    	// Need to construct threads and get them into the list
     	int seat = 2;
     	for (String e : allPlayerEmails) {
     		User u = util.getUser(e);
     		String email = u.getEmail();
     		String username = u.getUsername();
+    		int amount = util.getAmountDrinked(u.getEmail(), lobbyName);
     		// if it is me
     		if (email.equals(myEmail)) {
     			myUsername = u.getUsername();
@@ -70,20 +73,38 @@ public class LobbyController {
     		}
     	}
     	UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, 0, 1);
-    	allPlayers.add(0, mePlayer);        	
+    	allPlayers.add(0, mePlayer);
     	executeThreads();
+    	
+    	// Get amount of drinks
+    	passValue(model);
         return "lobby";
     }
     
-    private void executeThreads() {
+    private void passValue(ModelMap model) {
+    	String place = "seat";
+    	int num = 1;
+    	for (UserThread u : allPlayers) {
+    		model.put(place.concat(Integer.toString(num)), u.getAmountDrinked()+" "+u.getUsername());
+    		num++;
+    	}
+    }
+    
+    private static void executeThreads() {
     	ExecutorService ex = Executors.newCachedThreadPool();
     	for (UserThread u : allPlayers) {
-    		try {
-				ex.execute(u);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    		ex.execute(u);
+    	}
+    	ex.shutdown();
+    	while(!ex.isTerminated()) {}
+    }
+    
+    @RequestMapping(value = "/lobby", method = RequestMethod.POST)
+    public void addDrink(@RequestParam String userID) {
+    	for (UserThread u : allPlayers) {
+    		if (u.getUsername().equals(userID)) {
+    			u.addShot();
+    		}
     	}
     }
 	
