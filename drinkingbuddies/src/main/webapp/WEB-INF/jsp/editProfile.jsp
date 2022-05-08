@@ -30,50 +30,29 @@
 				<a href = "/login">login / register</a>
 			</div>
 		</div>
-		<h1 id = "userID">${userID}</h1>
+
 		<h2 id = "userName">${userName}</h2>
-		<form id = "profileInfo" method = "POST">
-			<p id = "userBio">
-				<label>Bio: <input id = "bioInput" type = "text"></label>
-			</p>
-			<h2 id = "userEmail">
-				<label>Email: <input id = "emailInput" type = "text"></label>
-			</h2>
-			<h2 id = "userPhoneNum">
-				<label>Phone Number: <input id = "phoneNumInput" type = "text"></label>
-			</h2>
-			<h2 id = "userDOB">
-				<label>Date of Birth: <input id = "DOBInput" type = "text"></label>
-			</h2>
-			<button id = "doneButton" type = "submit">Done</button>
-		</form>
-		<h2>Your Friends: </h2>
-		<div id = "friendsList">
-		<div id = "friendsList">
-			<%--
-			<%
-				List<Friend> friendsList;
-				friendsList = (List<Friend>) request.getAttribute("friendsList");
-				if(friendsList != null && !friendsList.isEmpty())
-				{
-					for(int i = 0; i < friendsList.size(); i++)
-					{
-			%>
-				<button>
-					friendsList.get(i).getUsername();
-					friendsList.get(i).getOnlineStatus();
-				</button>
-			<% 
-					}
-				}
-				
-			%>
-			--%>
-		</div> 
-		<form id = "addFriend" method = "POST">
-			<input class = "textBox" type = "text" name = "friendName">
-			<button id = "addFriendButton" type = "submit">Add</button>
-		</form>
+
+		<div class="editBlcok">
+			<div id="bioEdit">
+				<form method = "POST">
+					<input type="text" id = "editBio" name="newBio" placeholder="Enter your new bio here...">
+					<div id="editBioBut"><button type="submit">Change to new Bio</button></div>
+				</form>
+			</div>
+			<div id="restEdit">
+				<form method = "POST">
+					<input class = "dateSelect" type = "date" name = "birthDate" required/>
+				</form>
+				<form method="post">
+
+				</form>
+
+			</div>
+
+		</div>
+
+
 	</div>
 </body>
 </html>

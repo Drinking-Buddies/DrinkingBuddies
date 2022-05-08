@@ -372,5 +372,8 @@ h1 {
 	color: #ff5757;
 }
 .editBlock{
+	display:flex;
+}
+#editBio{
 
 }
