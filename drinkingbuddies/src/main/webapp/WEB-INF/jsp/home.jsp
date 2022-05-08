@@ -48,53 +48,55 @@
 				%>
 			</div>
 		</div>
-		<h1>Welcome <%= name %>!</h1>
-		<h2>Here's your stats from the past few days: </h2>
-		<div id = "drinkingHistory">
-		<!-- 
-			/*
-				List<Date> drinkingHistory;
-				drinkingHistory = (List<Date>) request.getAttribute("drinkingHistory");
-				if(drinkingHistory != null && !drinkingHistory.isEmpty())
-				{
-					for(int i = 0; i < drinkingHistory.size(); i++)
+		<div id = "homePage">
+			<h1>Welcome <%= name %>!</h1>
+			<h2>Here's your stats from the past few days: </h2>
+			<div id = "drinkingHistory">
+			<!--
+				/*
+					List<Date> drinkingHistory;
+					drinkingHistory = (List<Date>) request.getAttribute("drinkingHistory");
+					if(drinkingHistory != null && !drinkingHistory.isEmpty())
 					{
-			*/
-					<button>
-						drinkingHistory.get(i).getDate();
-					</button>
-			 /*
+						for(int i = 0; i < drinkingHistory.size(); i++)
+						{
+				*/
+						<button>
+							drinkingHistory.get(i).getDate();
+						</button>
+				/*
+						}
 					}
-				}
-			 */
-		 -->
-		</div>
-		<h2>Friends currently online: </h2>
-		<div id = "friendsList">
-		<!-- 
-			
-			/*
-				List<Friend> friendsList;
-				friendsList = (List<Friend>) request.getAttribute("friendsList");
-				List<user> friendsList;
-				friendsList = (List<user>) request.getAttribute("friendsList");
-				if(friendsList != null && !friendsList.isEmpty())
-				{
-					for(int i = 0; i < friendsList.size(); i++)
-					{
-			*/
-			
-				<button>
-					friendsList.get(i).getUsername();
-					friendsList.get(i).getOnlineStatus();
-				</button>
-			 /*
-					}
-				}
-			*/
-			
+				*/
 			-->
-		</div> 
+			</div>
+			<h2>Friends currently online: </h2>
+			<div id = "friendsList">
+			<!-- 
+				
+				/*
+					List<Friend> friendsList;
+					friendsList = (List<Friend>) request.getAttribute("friendsList");
+					List<user> friendsList;
+					friendsList = (List<user>) request.getAttribute("friendsList");
+					if(friendsList != null && !friendsList.isEmpty())
+					{
+						for(int i = 0; i < friendsList.size(); i++)
+						{
+				*/
+				
+					<button>
+						friendsList.get(i).getUsername();
+						friendsList.get(i).getOnlineStatus();
+					</button>
+				/*
+						}
+					}
+				*/
+				
+				-->
+			</div>
+		</div>
 	</div>
 	
 	<script>

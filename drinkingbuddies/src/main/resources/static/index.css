@@ -126,8 +126,6 @@ h1 {
 	margin-bottom: 10px;
 }
 
-
-
 #loginDiv{
 	white-space: normal;
 	width: 70%;
@@ -369,4 +367,8 @@ h1 {
 	margin-bottom: 0px;
 	font-size: medium;
 	color: #ff5757;
+}
+
+#homePage {
+	margin-left: 60px;
 }
