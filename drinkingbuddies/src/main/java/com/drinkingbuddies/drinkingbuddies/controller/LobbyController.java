@@ -31,7 +31,6 @@ public class LobbyController {
 		for (UserThread u : allPlayers) {
 			u.finishSession();
 		}
-		System.out.println(allPlayers.size());
 		allPlayers.clear();
 		return "redirect:/home";
 	}
@@ -44,45 +43,35 @@ public class LobbyController {
 	
     @RequestMapping(value = "/lobby", method = RequestMethod.GET)
     public String lobbyPage(HttpServletRequest request){
+    	String lobbyName = readCookie("lobbyName", request).get();
+    	LinkedList<String> allPlayerEmails = util.getParticipants(lobbyName);
+    	System.out.println(util.getAmountDrinked("dd@usc.edu", lobbyName));
     	
-    	if (allPlayers.isEmpty()) {
-    		// Get participants!!!!!!!!!!!!!
-        	String lobbyName = readCookie("lobbyName", request).get();
-        	LinkedList<String> allPlayerEmails = util.getParticipants(lobbyName);
-        	
-        	// Need to check if the user is actually me
-        	String myEmail = "Guest";
-        	String myUsername = "Guest";
-        	Optional<String> tmpUserEmail = readCookie("userEmail",request);
-        	if (tmpUserEmail.isPresent()) {
-        		myEmail = tmpUserEmail.get();
-        	}
-        	
-        	
-        	// Need to construct thread objects and get them into the list
-        	User me = null;
-        	int myShots = 0;
-        	int seat = 2;
-        	
-        	for (String e : allPlayerEmails) {
-        		User u = util.getUser(e);
-        		String email = u.getEmail();
-        		String username = u.getUsername();
-        		int amount = util.getAmountDrinked(u.getEmail(), lobbyName);
-        		
-        		if (email.equals(myEmail)) {
-        			myUsername = u.getUsername();
-        			myShots = amount;
-        		}else {
-        			UserThread otherPlayer = new UserThread(username, email, lobbyName, amount, seat);
-            		allPlayers.add(otherPlayer);
-            		seat++;
-        		}
-        	}
-        	UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, myShots, 1);
-        	allPlayers.add(0, mePlayer);        	
-        	executeThreads();
+    	String myEmail = "Guest";
+    	String myUsername = "Guest";
+    	
+    	Optional<String> tmpUserEmail = readCookie("userEmail",request);
+    	if (tmpUserEmail.isPresent()) {
+    		myEmail = tmpUserEmail.get();
     	}
+
+    	int seat = 2;
+    	for (String e : allPlayerEmails) {
+    		User u = util.getUser(e);
+    		String email = u.getEmail();
+    		String username = u.getUsername();
+    		// if it is me
+    		if (email.equals(myEmail)) {
+    			myUsername = u.getUsername();
+    		}else {
+    			UserThread otherPlayer = new UserThread(username, email, lobbyName, 0, seat);
+        		allPlayers.add(otherPlayer);
+        		seat++;
+    		}
+    	}
+    	UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, 0, 1);
+    	allPlayers.add(0, mePlayer);        	
+    	executeThreads();
         return "lobby";
     }
     
