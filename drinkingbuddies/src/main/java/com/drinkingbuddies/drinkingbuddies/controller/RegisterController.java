@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility;
 
+import java.util.regex.*;
+
 @Controller
 public class RegisterController {
 	private dbUtility util = new dbUtility();
@@ -37,8 +39,31 @@ public class RegisterController {
 			errorMap.put("errorWeight", "Please enter a integer here");
 		}else {
 			myWeight = Integer.parseInt(weight);
-		}		
-		
+		}	
+		if(email.contentEquals("") || (!email.contains("@") && !email.contains(".com") && !email.contains(".edu") && !email.contains(".net")))
+		{
+			errorMap.put("errorEmail", "Please enter a valid email");
+		}
+		if(password.contentEquals(""))
+		{
+			errorMap.put("errorPassword", "Please enter a password.");
+		}
+		if(userID.contentEquals(""))
+		{
+			errorMap.put("errorUserID", "Please enter a user ID.");
+		}
+		if(legalName.contentEquals(""))
+		{
+			errorMap.put("errorLegalName", "Please enter a password.");
+		}
+		if(!isValidNumber(phone))
+		{
+			errorMap.put("errorPhoneNum", "Please enter a valid phone number");
+		}
+		if(!isValidNumber(emergency))
+		{
+			errorMap.put("errorEmergency", "Please enter a valid emergency phone number");
+		}
 		// Add to database and cookie if no problem is detected
 		if (errorMap.isEmpty()) {
 			util.newUser(email, userID, password, birthDate, phone, emergency, myWeight, "I am a person!");
@@ -70,5 +95,27 @@ public class RegisterController {
 	    }
 	    // only got here if we didn't return false
 	    return true;
+	}
+	public static boolean isValidNumber(String s)
+	{
+		Pattern tenPattern = Pattern.compile("^\\d{10}$");
+		Matcher tenMatch = tenPattern.matcher(s);
+		if(tenMatch.matches() == false)
+		{
+			return false;
+		}
+		Pattern hypPattern = Pattern.compile("^(\\d{3}[- .]?){2}\\d{4}$");
+		Matcher hypMatch = hypPattern.matcher(s);
+		if(hypMatch.matches() == false)
+		{
+			return false;
+		}
+		Pattern parenPattern = Pattern.compile("^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$");
+		Matcher parenMatch = parenPattern.matcher(s);
+		if(parenMatch.matches() == false)
+		{
+			return false;
+		}
+		return true;
 	}
 }
