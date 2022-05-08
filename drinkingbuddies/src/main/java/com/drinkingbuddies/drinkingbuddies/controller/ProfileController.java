@@ -38,6 +38,9 @@ public class ProfileController {
 			model.put("email",curUser.getEmail());
 			model.put("phone", curUser.getPhone());
 			model.put("DOB",curUser.getBirthday());
+			model.put("weight",curUser.getWeight());
+			model.put("gender",curUser.getGender());
+			model.put("emergencyNum",curUser.getEmergency_phone());
 			LinkedList<String> friends = util.getFriends(curUser.getEmail());
 			request.setAttribute("friends",friends);
 			return "profile";
@@ -67,6 +70,9 @@ public class ProfileController {
 			map.put("email", curUser.getEmail());
 			map.put("phone", curUser.getPhone());
 			map.put("DOB", curUser.getBirthday());
+			map.put("weight",curUser.getWeight());
+			map.put("gender",curUser.getGender());
+			map.put("emergencyNum",curUser.getEmergency_phone());
 			msg = util.friendRequest(usrEmail, receiverEmail);
 			map.put("msg", msg);
 			return "profile";

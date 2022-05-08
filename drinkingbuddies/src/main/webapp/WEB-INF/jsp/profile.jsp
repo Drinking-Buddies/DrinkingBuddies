@@ -41,15 +41,15 @@
 		</div>
 		<div class="userInfo">
 			<div>
-				<h2 id = "userEmail">Email: ${email}</h2>
+				<h2 id="userWeight">Weight: ${weight}</h2>
 				<h2 id = "userPhoneNum">Phone: ${phone}</h2>
 				<h2 id = "userDOB">DOB: ${DOB}</h2>
 			</div>
-			<div>
-				<h2 id="userWeight">Weight: ${weight}</h2>
-				<h2 id="userGender">Gender: ${gender}</h2>
+			<div style="margin-left:40px">
+				<h2 id ="userEmail">Email: ${email}</h2>
+				<h2 id ="userGender">Gender: ${gender}</h2>
+				<h2 id ="emergencyNum">Emergency contact: ${emergencyNum}</h2>
 			</div>
-
 
 			<div class="editProfileButton">
 				<a href = "/editProfile" id="editProfile">Edit Profile</a>

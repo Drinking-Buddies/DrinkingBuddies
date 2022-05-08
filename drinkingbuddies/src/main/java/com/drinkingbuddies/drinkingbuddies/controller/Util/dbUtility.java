@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 public class dbUtility {
 	private static final String DB = "jdbc:mysql://localhost:3306/buddy";
 	private static final String DBUserName = "root";
-	private static final String DBPassword = "root";
+	private static final String DBPassword = "1029384756";
  
 	public User getUser (String email) {
 		
@@ -596,7 +596,6 @@ public class dbUtility {
 		} catch (SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}
-		
 		return result;
 	} 
 	

@@ -11,9 +11,6 @@
 </head>
 <body>
 	<div class = "container">
-	<%
-		User currentUser = (User) request.getAttribute("user");
-	%>
 		<div class = "navBar">
 			<div class = "text-center">
 				<div class = "display-inline">
@@ -31,27 +28,33 @@
 			</div>
 		</div>
 
-		<h2 id = "userName">${userName}</h2>
+		<div class="profileUser"><h1>${userName}'s profile</h1></div>
+
+
 
 		<div class="editBlcok">
 			<div id="bioEdit">
 				<form method = "POST">
-					<input type="text" id = "editBio" name="newBio" placeholder="Enter your new bio here...">
+					<input type="text" id = "editBio" name="newBio" placeholder="Enter your new bio here..." required>
 					<div id="editBioBut"><button type="submit">Change to new Bio</button></div>
 				</form>
 			</div>
+
 			<div id="restEdit">
 				<form method = "POST">
-					<input class = "dateSelect" type = "date" name = "birthDate" required/>
-				</form>
-				<form method="post">
-
+					<input class = "dateSelect" type = "date" name = "birthDate"/>
+					<select name = "gender" class = "selectBox">
+						<option value = "Male">Male</option>
+						<option value = "Female">Female</option>
+					</select>
+					<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" />
+					<input class = "textBox" type = "text" name = "phone" placeholder = "Please enter your phone number" />
+					<input class = "textBox" type = "text" name = "emergency" placeholder = "Please enter your emergency contact" />
+					<button type="submit">Apply</button>
 				</form>
 
 			</div>
-
 		</div>
-
 
 	</div>
 </body>

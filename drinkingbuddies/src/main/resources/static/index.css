@@ -302,7 +302,7 @@ h1 {
 	background-color: #FFDD2A;
 	height:20px;
 	width: 160px;
-	margin-left: 30%;
+	margin-left: 15%;
 	margin-top: 2%;
 	text-align: center;
 	padding: 10px;
@@ -374,8 +374,9 @@ h1 {
 }
 
 .editBlock{
-	display:flex;
+	margin-left:20px;
+	width:1000px;
+	height: 800px;
 }
 #editBio{
-
 }
