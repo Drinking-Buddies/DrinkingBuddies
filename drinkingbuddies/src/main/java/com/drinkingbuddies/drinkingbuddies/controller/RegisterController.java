@@ -3,6 +3,8 @@ package com.drinkingbuddies.drinkingbuddies.controller;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +39,32 @@ public class RegisterController {
 			errorMap.put("errorWeight", "Please enter a integer here");
 		}else {
 			myWeight = Integer.parseInt(weight);
-		}		
+		}	
+		
+		if(email.contentEquals("") || (!email.contains("@") && !email.contains(".com") && !email.contains(".edu") && !email.contains(".net")))
+		{
+			errorMap.put("errorEmail", "Please enter a valid email");
+		}
+		if(password.contentEquals(""))
+		{
+			errorMap.put("errorPassword", "Please enter a password.");
+		}
+		if(userID.contentEquals(""))
+		{
+			errorMap.put("errorUserID", "Please enter a user ID.");
+		}
+		if(legalName.contentEquals(""))
+		{
+			errorMap.put("errorLegalName", "Please enter a password.");
+		}
+		if(!isValidNumber(phone))
+		{
+			errorMap.put("errorPhoneNum", "Please enter a valid phone number");
+		}
+		if(!isValidNumber(emergency))
+		{
+			errorMap.put("errorEmergency", "Please enter a valid emergency phone number");
+		}
 		
 		// Add to database and cookie if no problem is detected
 		if (errorMap.isEmpty()) {
@@ -60,6 +87,30 @@ public class RegisterController {
 	
 	
 	//Helper functions
+	
+	public static boolean isValidNumber(String s)
+	{
+		Pattern tenPattern = Pattern.compile("^\\d{10}$");
+		Matcher tenMatch = tenPattern.matcher(s);
+		if(tenMatch.matches() == false)
+		{
+			return false;
+		}
+		Pattern hypPattern = Pattern.compile("^(\\d{3}[- .]?){2}\\d{4}$");
+		Matcher hypMatch = hypPattern.matcher(s);
+		if(hypMatch.matches() == false)
+		{
+			return false;
+		}
+		Pattern parenPattern = Pattern.compile("^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$");
+		Matcher parenMatch = parenPattern.matcher(s);
+		if(parenMatch.matches() == false)
+		{
+			return false;
+		}
+		return true;
+	}
+	
 	public static boolean isInteger(String s) {
 	    try { 
 	        Integer.parseInt(s); 
