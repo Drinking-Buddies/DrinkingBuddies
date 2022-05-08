@@ -72,6 +72,15 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP PROCEDURE if exists GetDrinkHistory;
+DELIMITER $$
+CREATE PROCEDURE GetDrinkHistory (IN email VARCHAR(50))
+BEGIN
+    SELECT d.event_name, d.amount FROM drinking_history d
+    WHERE d.email = email;
+END$$
+DELIMITER ;
+
 DROP PROCEDURE if exists EventExists;
 DELIMITER $$
 CREATE PROCEDURE EventExists (IN event_name VARCHAR(50))

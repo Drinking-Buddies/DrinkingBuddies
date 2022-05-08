@@ -31,6 +31,8 @@ public class HomeController {
 			} catch (Exception e) {
 				return "home";
 			}
+			// if logged in, get drinking history
+			
 			// if logged in, pull out the possible friend request.
 			LinkedList<String> allRequests = util.getPendingRequests(email);
 			if(!allRequests.isEmpty()){
