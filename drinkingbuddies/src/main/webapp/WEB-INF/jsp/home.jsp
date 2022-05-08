@@ -81,7 +81,7 @@
 					if(curRequest!=null){
 						out.print("<h3>"+curRequest+" wants to be your friend.</h3>");
 						out.print("<div id=\"acceptFriendButton\">");
-						out.print("<form action=\"/acceptFriend\" method=\"Post\"><button id = 'acceptFriend' type = \"submit\">");
+						out.print("<form action=\"/acceptFriend\" method=\"Post\"><button class = 'acceptFriend' type = \"submit\">");
 						out.print("Accept</button></form></div>");
 					}else{
 						out.println("<h3> You have no pending requests... </h3>");
