@@ -279,7 +279,7 @@ h1 {
 #bioBlock{
 	border-radius: 6px;
 	width: 70%;
-	min-width: 680px;
+	min-width: 700px;
 	height: 150px;
 	border-style: solid;
 	border-color:white;
@@ -301,7 +301,7 @@ h1 {
 	background-color: #FFDD2A;
 	height:20px;
 	width: 160px;
-	margin-left: 15%;
+	margin-left: 9%;
 	margin-top: 2%;
 	text-align: center;
 	padding: 10px;
@@ -432,7 +432,6 @@ textarea {
 	width: 100px;
 	height: 30px;
 	margin-top: 10px;
-	margin-bottom: 20px;
 	font-size: 18px;
 	font-weight: 700;
 }
@@ -526,3 +525,13 @@ textarea {
 	margin-bottom: 10px;
 }
 
+/* EXTRA CSS FOR EDIT PROFILE PAGE */
+.editProfileContent{
+	width: 700px;
+	text-align: left;
+}
+
+.editProfileContent p{
+	margin-left: 10px;
+	font-weight: 600;
+}

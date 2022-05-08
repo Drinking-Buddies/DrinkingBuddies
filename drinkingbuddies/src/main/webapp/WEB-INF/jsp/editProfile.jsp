@@ -58,7 +58,7 @@
 				<div id="bioEdit">
 					<form method = "POST">
 						<textarea name="newBio">Enter your new bio here...</textarea>
-						<br/>
+						<p class = "errorMsg">${bioError}</p>
 						<button id="editBioBut" type="submit">Edit</button>
 					</form>
 				</div>
@@ -68,15 +68,21 @@
 						<div id="updateSelectors">
 							<input class = "dateSelect" type = "date" name = "birthDate"/>
 							<select name = "gender" class = "selectBox">
+								<option value="" disabled selected>Select your gender</option>
 								<option value = "Male">Male</option>
 								<option value = "Female">Female</option>
 							</select>
 						</div>
-						<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" />
-						<input class = "textBox" type = "text" name = "phone" placeholder = "Please enter your phone number" />
-						<input class = "textBox" type = "text" name = "emergency" placeholder = "Please enter your emergency contact" />
-						<br/>
-						<button id="applyButton" type="submit">Apply</button>
+						<div class="editProfileContent">
+							<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" />
+							<p class = "errorMsg">${weightError}</p>
+							<input class = "textBox" type = "text" name = "phone" placeholder = "Please enter your phone number" />
+							<p class = "errorMsg">${phoneError}</p>
+							<input class = "textBox" type = "text" name = "emergency" placeholder = "Please enter your emergency contact" />
+							<p class = "errorMsg">${emergencyError}</p>
+							<button id="applyButton" type="submit">Apply</button>
+							<p>${editMsg}</p>
+						</div>
 					</form>
 	
 				</div>

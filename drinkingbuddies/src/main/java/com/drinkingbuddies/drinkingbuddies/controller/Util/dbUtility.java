@@ -492,7 +492,6 @@ public class dbUtility {
 	
 	public void removeFriend (String requester, String receiver)
 	{ 
-		boolean result = false;
 		
 		if (areFriends(requester, receiver))
 		{
@@ -513,23 +512,6 @@ public class dbUtility {
 				p.setString(3, requester);
 				p.setString(4, receiver);
 				p.executeUpdate();
-//				if (!rs.next())
-//				{
-//					sql = "DELETE FROM Friendships WHERE requester = ? AND receiver = ?";
-//					try (Connection conn1 = DriverManager.getConnection(DB, DBUserName, DBPassword);
-//							PreparedStatement p1 = conn1.prepareStatement(sql);) {
-//
-//						p1.setString(1, receiver);
-//						p1.setString(2, requester);
-//
-//						ResultSet rs1 = p1.executeQuery();
-//						if (rs1.next())
-//						{
-//							return;
-//						}
-//					}
-//
-//				}
 			} 
 			catch (SQLException sqle) {
 				System.out.println ("SQLException: " + sqle.getMessage());

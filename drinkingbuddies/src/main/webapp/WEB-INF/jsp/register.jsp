@@ -27,6 +27,7 @@
 				<div>
 					<label for = "gender">Please input your binary sex: </label>
 					<select name = "gender" class = "selectBox" required>
+						<option value = "" disabled selected>Select your gender</option>
 						<option value = "Male">Male</option>
 						<option value = "Female">Female</option>
 					</select>
