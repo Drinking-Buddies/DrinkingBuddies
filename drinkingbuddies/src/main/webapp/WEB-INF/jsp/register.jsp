@@ -12,13 +12,12 @@
 		<form id = "registerForm" method = "POST">
 			<h2>Register</h2>
 			<input class = "textBox" type = "text" name = "email" placeholder = "Email" required/>
-			<br/>
+			<p class = "errorMsg">${errorEmail}</p>
 			<input class = "textBox" type = "password" name = "password" placeholder = "Password" required/>
-			<br/>
+			<p class = "errorMsg">${errorWeight}</p>
 			<input class = "textBox" type = "text" name = "userID" placeholder = "User ID" required/>
 			<br/>
 			<input class = "textBox" type = "text" name = "legalName" placeholder = "Your Legal Name" required/>
-
 			<div id = "userInfo">
 				<p> This section is for your personal BAC calculation to ensure a safe drinking experience! </p>
 				<div>
@@ -35,11 +34,10 @@
 			</div>
 			<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" required/>
 			<p class = "errorMsg">${errorWeight}</p>
-			<br/>
 			<input class = "textBox" type = "text" name = "phone" placeholder = "Please enter your phone number" required/>
-			<br/>
+			<p class = "errorMsg">${errorPhoneNum}</p>
 			<input class = "textBox" type = "text" name = "emergency" placeholder = "Please enter your emergency contact" required/>
-			<br/>
+			<p class = "errorMsg">${errorEmergency}</p>
 			<button id = "registerButton" type = "submit">Sign me up!</button>
 		</form>
 		<img src = "/DrinkingBuddies_Assets/logo_Back.png" id = "beerLogo_1">

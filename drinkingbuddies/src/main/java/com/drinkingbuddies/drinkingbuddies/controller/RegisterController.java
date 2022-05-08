@@ -41,7 +41,11 @@ public class RegisterController {
 			myWeight = Integer.parseInt(weight);
 		}	
 		
-		if(email.contentEquals("") || (!email.contains("@") && !email.contains(".com") && !email.contains(".edu") && !email.contains(".net")))
+		// For email
+		String regex = "^(.+)@(.+)$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(email);
+		if(!matcher.matches())
 		{
 			errorMap.put("errorEmail", "Please enter a valid email");
 		}
