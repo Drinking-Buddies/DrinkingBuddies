@@ -81,14 +81,13 @@
 			<div class = "friendblockContent">
 				<h2>Your Friends: </h2>
 				<div id="friendListBox">
-
 					<%
 						LinkedList<String> friends = (LinkedList<String>) request.getAttribute("friends");
 						if(friends != null && !friends.isEmpty())
 						{
 							for(int i = 0; i < friends.size(); i++) {
 								out.println("<div class=\"friend\"> -  "+(new dbUtility()).getUser(friends.get(i)).getUsername()+
-										"<form method=\"Post\"> <button name =\"removeFriendEmail\" " +
+										"<form action = \"/removeFriend\" method=\"Post\"> <button name =\"removeFriendEmail\" " +
 										"value ="+friends.get(i)+" type = \"submit\" class=\"removeBut\"> REMOVE FRIEND" +
 										"</button></form></div>");
 							}

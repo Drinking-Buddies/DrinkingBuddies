@@ -501,13 +501,15 @@ public class dbUtility {
 	            e.printStackTrace();
 	        }
 			
-			String sql = "DELETE FROM Friendships WHERE requester = ? AND receiver = ?";
+			String sql = "DELETE FROM Friendships WHERE (requester = ? AND receiver = ?) OR (receiver = ? AND requester = ?)";
 	        
 			try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
 				PreparedStatement p = conn.prepareStatement(sql);) {
 	
 				p.setString(1, requester);
 				p.setString(2, receiver);
+				p.setString(3, requester);
+				p.setString(4, receiver);
 				p.executeUpdate();
 //				if (!rs.next())
 //				{

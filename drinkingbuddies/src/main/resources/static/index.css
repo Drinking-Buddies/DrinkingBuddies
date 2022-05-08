@@ -441,13 +441,15 @@ textarea {
 	font-family: "Gill Sans", sans-serif;
 	font-size: medium;
 	margin:8px;
-	padding-top: 3px;
 	padding-left:5px;
+	padding-bottom: 10px;
 	border-bottom-style: solid;
 	border-color:lightgrey;
+	position: relative;
 }
 .removeBut{
-	margin-left: 190px;
+	position: absolute;
+	right: 10px;
 	margin-top:2px;
 	margin-bottom: 0px;
 	background-color: rgb(170,170,150);
@@ -477,7 +479,6 @@ textarea {
 
 /* CSS FOR HOME */
 #homePage {
-	border: 1px solid red;
 	margin-left: 60px;
 	width: 60%;
 	min-width: 750px;
@@ -492,6 +493,11 @@ textarea {
 }
 
 #requestDisplay{
-	
+	padding: 10px;
+	border-radius: 6px;
+	border: 2px solid grey;
+	width: 97%;
+	height: 200px;
+	overflow-y: auto;
 }
 
