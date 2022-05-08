@@ -8,24 +8,21 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<title>Home Page</title>
 	<%
-		
-       	Cookie[] cookies = null;
-       	Cookie myCookie = null;
-		
+		Cookie[] cookies = null;
+		Cookie myCookie = null;
 		cookies = request.getCookies();
 		boolean login = false;
-		String welcomeMsg = "";
+		String name = "Guest";
 		if (cookies != null){
 			for (int i = 0; i < cookies.length; i++){
 				if (cookies[i].getName().equals("userName")){
 					myCookie = cookies[i];
-					welcomeMsg = cookies[i].getValue();
+					name = cookies[i].getValue();
 					login = true;
 				}
 			}
 		}
-		welcomeMsg = welcomeMsg.replace('=', ' ');
-    %>
+	%>
 </head>
 <body>
 	<div class = "container">
@@ -43,22 +40,15 @@
 			</div>
 			<div class = "toLogin">
 				<%
-					if (!login){
+					if (!login) {
 						out.println("<a href = '/login'>login / register</a>");
-					}else{
+					} else {
 						out.println("<a href = '/home' onclick = 'LogOut();'>logout</a>");
 					}
 				%>
 			</div>
 		</div>
-		<h1><%
-       			if (login){
-       				out.println("Welcome "+welcomeMsg+"!");
-       			}else{
-       				out.println("Welcome guest!");
-       			}
-       		%>
-	    </h1>
+		<h1>Welcome <%= name %>!</h1>
 		<h2>Here's your stats from the past few days: </h2>
 		<div id = "drinkingHistory">
 		<!-- 
