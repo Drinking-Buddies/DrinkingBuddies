@@ -1,32 +1,33 @@
-package com.drinkingbuddies.drinkingbuddies.classes;
+package com.drinkingbuddies.drinkingbuddies.controller.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.drinkingbuddies.drinkingbuddies.classes.Drink;
 import com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility;
 
-public class RegisterUser extends User{
+public class Registeruser extends User{
     String userName;
     String email;
     String password;
     String birthday;
     String phoneNum;
     String emergencyPhoneNum;
-    Float weight;
-    Float height;
+    int weight;
+    int height;
     Map<String, List<Drink>> drinkHis;
     List<String> friends;
 
-    public RegisterUser(String userName,
+    public Registeruser(String userName,
                         String email,
                         String password,
                         String birthday,
                         String phoneNum,
                         String emergencyPhoneNum,
-                        Float weight,
-                        Float height){
+                        int weight,
+                        int height){
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -57,10 +58,10 @@ public class RegisterUser extends User{
     public String getEmergencyPhoneNum() {
         return emergencyPhoneNum;
     }
-    public Float getWeight() {
+    public int getWeight() {
         return weight;
     }
-    public Float getHeight() {
+    public int getHeight() {
         return height;
     }
     public Map<String, List<Drink>> getDrinkHis() {
@@ -88,10 +89,10 @@ public class RegisterUser extends User{
     public void setEmergencyPhoneNum(String emergencyPhoneNum) {
         this.emergencyPhoneNum = emergencyPhoneNum;
     }
-    public void setWeight(Float weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
-    public void setHeight(Float height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 

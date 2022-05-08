@@ -298,7 +298,7 @@ public class dbUtility {
 		return "Request sent successfully.";
 	} 
 	
-	public void acceptFriend (String requester, String receiver)
+	public static void acceptFriend (String requester, String receiver)
 	{
 		try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -320,6 +320,55 @@ public class dbUtility {
 			System.out.println ("SQLException: " + sqle.getMessage());
 		}
 		
+	}  
+	
+	public static void removeFriend (String requester, String receiver)
+	{ 
+		boolean result = false;
+		
+		if (areFriends(requester, receiver))
+		{
+			try {
+	            Class.forName("com.mysql.jdbc.Driver");
+	
+	        } catch (ClassNotFoundException e) {
+	            e.printStackTrace();
+	        }
+			
+			String sql = "DELETE FROM Friendships WHERE requester = ? AND receiver = ?";
+	        
+			try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				PreparedStatement p = conn.prepareStatement(sql);) {
+	
+				p.setString(1, requester);
+				p.setString(2, receiver);
+				
+				ResultSet rs = p.executeQuery();
+				
+				if (!rs.next()) 
+				{
+					sql = "DELETE FROM Friendships WHERE requester = ? AND receiver = ?"; 
+					try (Connection conn1 = DriverManager.getConnection(DB, DBUserName, DBPassword);
+							PreparedStatement p1 = conn1.prepareStatement(sql);) {
+				
+						p1.setString(1, receiver);
+						p1.setString(2, requester);
+						
+						ResultSet rs1 = p1.executeQuery();
+						
+						if (rs1.next())
+						{
+							return; 
+						}
+					} 
+							
+				}
+			} 
+			catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+		}
+		
 	} 
 	
 	public LinkedList<String> getFriends (String email)
@@ -330,7 +379,7 @@ public class dbUtility {
             Class.forName("com.mysql.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace();	
         }
 		
 		String sql = "{ CALL GetFriends(?) }";
@@ -353,7 +402,7 @@ public class dbUtility {
 		return result;
 	}
 	
-	public boolean areFriends(String email1, String email2) {
+	public static boolean areFriends(String email1, String email2) {
 		boolean result = false;
 		
 		try {
