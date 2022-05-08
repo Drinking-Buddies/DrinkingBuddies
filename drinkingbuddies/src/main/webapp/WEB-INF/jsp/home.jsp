@@ -55,6 +55,23 @@
 			%>
 			<h2>Here's your stats from the past few days: </h2>
 			<div id = "drinkingHistory">
+				<%
+				LinkedList<String> history = (LinkedList<String>)request.getAttribute("history");
+				if (history != null && !history.isEmpty()){
+					for (String h : history){
+					%>
+						<div class = "historyBlock">
+							<%
+							out.println(h);
+							%>
+						</div>
+					<%
+					}
+				}else{
+					out.println("<h3> You have no drinking sessions... </h3>");
+				}
+				%>
+			
 			<!--
 				/*
 					List<Date> drinkingHistory;

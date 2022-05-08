@@ -1,6 +1,8 @@
 package com.drinkingbuddies.drinkingbuddies.controller.Util;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -618,6 +620,33 @@ public class dbUtility {
 		}
 		return result;
 	} 
+	
+	public Map<String, String> getDrinkingHistory(String email){
+		Map<String, String> allEvents = new LinkedHashMap<>();
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL GetDrinkHistory(?) }";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, email);
+			
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				allEvents.put(rs.getString(2), Integer.toString(rs.getInt(3)) + "," + rs.getDate(1).toString());
+			}
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		
+		return allEvents;
+	}
 	
 	
 }

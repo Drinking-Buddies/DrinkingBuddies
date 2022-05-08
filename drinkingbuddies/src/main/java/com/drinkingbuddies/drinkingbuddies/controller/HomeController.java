@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 
 @Controller
@@ -32,6 +34,26 @@ public class HomeController {
 				return "home";
 			}
 			// if logged in, get drinking history
+			Map<String, String> drinkHistory = util.getDrinkingHistory(email);
+			LinkedList<String> history = new LinkedList<>();
+			for (Entry<String, String> e : drinkHistory.entrySet()) {
+				String details = e.getValue();
+				int amount = Integer.parseInt(details.split(",")[0]);
+				String date = details.split(",")[1];
+				
+				if (amount <= 10) {
+					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+e.getValue()+" shots. That's not too much.");
+				}else if (amount > 10 && amount <= 20) {
+					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+e.getValue()+" shots. You can certainly drink...");
+				}else {
+					history.add("Date: "+date+" &emsp; Session: "+e.getKey() + " - You drinked "+e.getValue()+" shots. Did you wake up in ICU?");
+				}
+				
+			}
+			if (!history.isEmpty()) {
+				request.setAttribute("history", history);
+			}
+			
 			
 			// if logged in, pull out the possible friend request.
 			LinkedList<String> allRequests = util.getPendingRequests(email);

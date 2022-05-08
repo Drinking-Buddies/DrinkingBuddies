@@ -76,8 +76,15 @@ DROP PROCEDURE if exists GetDrinkHistory;
 DELIMITER $$
 CREATE PROCEDURE GetDrinkHistory (IN email VARCHAR(50))
 BEGIN
-    SELECT d.event_name, d.amount FROM drinking_history d
-    WHERE d.email = email;
+
+	SELECT start_time, drinkEvent.event_name, drinkEvent.amount
+	FROM past_events,
+    (
+		SELECT d.event_name, d.amount
+        FROM drinking_history d
+        WHERE d.email = email
+    ) AS drinkEvent
+	WHERE drinkEvent.event_name = past_events.event_name;
 END$$
 DELIMITER ;
 
