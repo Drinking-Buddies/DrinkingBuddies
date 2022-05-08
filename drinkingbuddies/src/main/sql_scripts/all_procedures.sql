@@ -30,7 +30,7 @@ DELIMITER ;
 
 DROP PROCEDURE if exists NewEvent;
 DELIMITER $$
-CREATE PROCEDURE NewEvent (IN start_time DATETIME, IN event_name VARCHAR(50))
+CREATE PROCEDURE NewEvent (IN start_time DATE, IN event_name VARCHAR(50))
 BEGIN
 	INSERT INTO Past_events (event_name, start_time)
     VALUES (event_name, start_time);

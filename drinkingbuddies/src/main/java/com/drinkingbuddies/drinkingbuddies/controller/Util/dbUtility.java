@@ -28,11 +28,8 @@ public class dbUtility {
 		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
 				 PreparedStatement stmt = conn.prepareStatement(sql);) {
 				
-				//Set IN parameters
 				stmt.setString(1, email);
-				
-				//Execute stored procedure
-				
+								
 				ResultSet rs = stmt.executeQuery();
 				if (rs.next()) {
 					user.setEmail(rs.getString("email")); 
@@ -47,7 +44,6 @@ public class dbUtility {
 				}			
 				
 			} catch (SQLException sqle) {
-				// Assume this is the error when no result found
 				System.out.println ("SQLException: " + sqle.getMessage());
 				return null;
 			}
@@ -113,6 +109,174 @@ public class dbUtility {
 		}
 		
 		return result;
+	}
+	
+	public void updateUsername(String email, String changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET username = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setString(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+	}
+	
+	public void updatePass(String email, String changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET pass = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setString(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+	}
+	
+	public void updateGender(String email, String changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET sex = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setString(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+	}
+	
+	public void updateBirthday(String email, String changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET birthday = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setString(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+	}
+	
+	public void updatePhone(String email, String changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET phone = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setString(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+	}
+	
+	public void updateEmergencyPhone(String email, String changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET emergency_phone = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setString(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+	}
+	
+	public void updateWeight(String email, int changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET weight = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setInt(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
+	}
+	
+	public void updateBio(String email, String changeTo) {		
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		String sql = "UPDATE Users SET bio = ? WHERE email = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+				 PreparedStatement stmt = conn.prepareStatement(sql);) {
+				
+				stmt.setString(1, changeTo);
+				stmt.setString(2, email);
+				
+				stmt.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println ("SQLException: " + sqle.getMessage());
+			}
 	}
 	
 	public void newEvent (String start_time, String event_name) {

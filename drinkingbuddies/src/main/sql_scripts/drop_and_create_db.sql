@@ -22,7 +22,7 @@ CREATE TABLE Users (
 
 CREATE TABLE Past_events (
     event_name VARCHAR(50) NOT NULL PRIMARY KEY,
-    start_time DATETIME NOT NULL DEFAULT NOW()
+    start_time DATE NOT NULL DEFAULT (CURRENT_DATE)
 );
 
 CREATE TABLE Drinking_history (
