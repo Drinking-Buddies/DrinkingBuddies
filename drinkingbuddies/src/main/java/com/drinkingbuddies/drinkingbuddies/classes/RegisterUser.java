@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility;
+
 public class RegisterUser extends User{
     String userName;
     String email;
@@ -94,18 +96,24 @@ public class RegisterUser extends User{
     }
 
     //TODO: input friend's id and put it into the list
-    public void addFriend(String friendId){
-        friends.add(friendId);
+    public void addFriend(String friendId){  //parameter should be username? 
+    	friends.add(friendId);
+    	dbUtility.acceptFriend(this.getUserName(), friendId); 
     }
 
     //TODO: input is the #existing# friend's id, simply remove it
-    public void removeFriend(String friendId){
-        friends.remove(friendId);
+    public void removeFriend(String friendId){ 
+        friends.remove(friendId); 
+        
+        if (!dbUtility.areFriends(this.getEmail(), friendId))
+        {
+        	dbUtility.removeFriend(this.getUserName(), friendId); 
+        }
     }
 
     //TODO: no fucking idea right now
     public void createRoome(){
-
+    	
     }
     // TODO: no fucking idea right now
     public void logout(){
