@@ -22,28 +22,33 @@ import com.drinkingbuddies.drinkingbuddies.threads.UserThread;
 
 @Controller
 public class LobbyController {
-	private static LinkedList<UserThread> allPlayers = new LinkedList<>();
 	private dbUtility util = new dbUtility();
+	private LinkedList<UserThread> allPlayers = new LinkedList<>();
 	
 	@RequestMapping(value = "/leave")
 	public String leaveToHome() {
-		for (UserThread u : allPlayers) {
-			u.finishSession();
-		}
 		allPlayers.clear();
 		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/addShot")
-	public String addShot() {
-		allPlayers.get(0).addShot();
+	public String addShot(ModelMap model, HttpServletRequest request) {
+		boolean canAddShot = true;
+		allPlayers.clear();
+		
+		updateValue(model, request, canAddShot);
 		return "redirect:/lobby";
 	}
 	
-    @RequestMapping(value = "/lobby", method = RequestMethod.GET)
+    @RequestMapping(value = "/lobby")
     public String lobbyPage(ModelMap model, HttpServletRequest request){
     	allPlayers.clear();
-
+    	boolean canAddShot = false;
+    	updateValue(model, request, canAddShot);
+        return "lobby";
+    }
+    
+    private void updateValue(ModelMap model, HttpServletRequest request, boolean canAddShot) {
     	String lobbyName = readCookie("lobbyName", request).get();
     	LinkedList<String> allPlayerEmails = util.getParticipants(lobbyName);
     	
@@ -77,10 +82,12 @@ public class LobbyController {
         	allPlayers.add(0, mePlayer);
     	}
     	executeThreads();
-    	
+    	if (canAddShot) {
+    		allPlayers.get(0).addShot();
+    		canAddShot = false;
+    	}
     	// Get amount of drinks
     	passValue(model);
-        return "lobby";
     }
     
     private void passValue(ModelMap model) {
@@ -92,24 +99,15 @@ public class LobbyController {
     	}
     }
     
-    private static void executeThreads() {
+    private void executeThreads() {
     	ExecutorService ex = Executors.newCachedThreadPool();
     	for (UserThread u : allPlayers) {
     		ex.execute(u);
     	}
     	ex.shutdown();
-    	while(!ex.isTerminated()) {}
+    	while (!ex.isTerminated()) {}
     }
     
-    @RequestMapping(value = "/lobby", method = RequestMethod.POST)
-    public void addDrink(@RequestParam String userID) {
-    	for (UserThread u : allPlayers) {
-    		if (u.getUsername().equals(userID)) {
-    			u.addShot();
-    		}
-    	}
-    }
-	
 	// Read them cookies
 	public Optional<String> readCookie(String key, HttpServletRequest request) {
 	    return Arrays.stream(request.getCookies())

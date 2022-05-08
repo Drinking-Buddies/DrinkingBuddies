@@ -6,8 +6,10 @@
 	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<title>Drink Page</title>
-
+	
 	<%
+		response.setIntHeader("Refresh", 5);
+	
        	Cookie[] cookies = null;
        	Cookie myCookie = null;
 		

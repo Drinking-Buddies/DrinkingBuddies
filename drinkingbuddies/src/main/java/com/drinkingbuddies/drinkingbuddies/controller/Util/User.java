@@ -98,7 +98,7 @@ public class User {
 	{
 		int BAC = 0; 
 		
-		if (this.getBio() == "female")
+		if (gender.equals("Female"))
 		{
 			BAC = (int) (alcohol / (this.getWeight() * 0.55)) * 100; 
 		}
