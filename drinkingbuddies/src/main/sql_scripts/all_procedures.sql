@@ -99,8 +99,8 @@ DELIMITER $$
 CREATE PROCEDURE FriendRequest (IN requester VARCHAR(50),
 								IN receiver VARCHAR(50))
 BEGIN
-	INSERT INTO Friendships (requester, receiver)
-    VALUES (requester, receiver);
+	INSERT INTO Friendships (requester, receiver, pending)
+    VALUES (requester, receiver, true);
 END$$
 DELIMITER ;
 
@@ -126,6 +126,20 @@ BEGIN
     SELECT f.requester
     FROM Friendships f
     WHERE f.receiver = email;
+END$$
+DELIMITER ;
+
+DROP PROCEDURE if exists GetPendingFriend;
+DELIMITER $$
+CREATE PROCEDURE GetPendingFriend (IN email VARCHAR(50))
+BEGIN
+	SELECT f.receiver
+    FROM Friendships f
+    WHERE f.requester = email and f.pending = true
+    UNION
+    SELECT f.requester
+    FROM Friendships f
+    WHERE f.receiver = email and f.pending = true; 
 END$$
 DELIMITER ;
 
