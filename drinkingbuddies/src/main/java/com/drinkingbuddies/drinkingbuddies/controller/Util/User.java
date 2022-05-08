@@ -94,6 +94,21 @@ public class User {
 		this.bio = bio;
 	}
     
+	public int calcBAC(int alcohol)
+	{
+		int BAC = 0; 
+		
+		if (this.getBio() == "female")
+		{
+			BAC = (int) (alcohol / (this.getWeight() * 0.55)) * 100; 
+		}
+		else 
+		{
+			BAC = (int) (alcohol / (this.getWeight() * 0.68)) * 100; 
+		}
+		
+		return BAC;
+	}
 	
 }
 
