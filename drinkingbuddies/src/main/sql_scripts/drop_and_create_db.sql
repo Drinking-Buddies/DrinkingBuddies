@@ -12,6 +12,7 @@ CREATE TABLE Users (
 	email VARCHAR(50) PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     pass VARCHAR(50) NOT NULL,
+    sex VARCHAR(10) NOT NULL,
     birthday DATE,
     phone VARCHAR(50),
     emergency_phone VARCHAR(50),
@@ -39,25 +40,4 @@ CREATE TABLE Friendships (
     FOREIGN KEY (requester) REFERENCES Users(email),
     FOREIGN KEY (receiver) REFERENCES Users(email)
 );
-
--- CREATE TABLE DrinkLobbies (
--- 	lobbyName VARCHAR(50) NOT NULL PRIMARY KEY,
---     event_id INT AUTO_INCREMENT,
---     email_p1 VARCHAR(50),
---     email_p2 VARCHAR(50),
---     email_p3 VARCHAR(50),
---     email_p4 VARCHAR(50),
---     email_p5 VARCHAR(50),
---     email_p6 VARCHAR(50),
---     email_p7 VARCHAR(50),
---     email_p8 VARCHAR(50),
---     FOREIGN KEY (email_p1) REFERENCES Users(email),
---     FOREIGN KEY (email_p2) REFERENCES Users(email),
---     FOREIGN KEY (email_p3) REFERENCES Users(email),
---     FOREIGN KEY (email_p4) REFERENCES Users(email),
---     FOREIGN KEY (email_p5) REFERENCES Users(email),
---     FOREIGN KEY (email_p6) REFERENCES Users(email),
---     FOREIGN KEY (email_p7) REFERENCES Users(email),
---     FOREIGN KEY (email_p8) REFERENCES Users(email)
--- );
 

@@ -3,15 +3,16 @@ DELIMITER $$
 CREATE PROCEDURE NewUser (IN email VARCHAR(50),
                           IN username VARCHAR(50),
 						  IN pass VARCHAR(50),
+                          IN sex VARCHAR(10),
 						  IN birthday DATE,
 						  IN phone VARCHAR(50),
 						  IN emergency_phone VARCHAR(50),
 						  IN weight INT UNSIGNED,
                           IN bio VARCHAR(200))
 BEGIN
-	INSERT INTO Users (email, username, pass, birthday, phone, 
+	INSERT INTO Users (email, username, pass, sex, birthday, phone, 
 			emergency_phone, weight, bio)
-    VALUES (email, username, pass, birthday, phone, 
+    VALUES (email, username, pass, sex, birthday, phone, 
 			emergency_phone, weight, bio);
 END$$
 DELIMITER ;
