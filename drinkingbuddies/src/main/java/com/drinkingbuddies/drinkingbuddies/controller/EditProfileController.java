@@ -19,8 +19,9 @@ import java.util.regex.Pattern;
 public class EditProfileController {
 	private dbUtility util = new dbUtility();
 	@RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-	public String editProfilePage(HttpServletRequest request) {
-
+	public String editProfilePage(ModelMap map, HttpServletRequest request) {
+//		String userName = readCookie("userName", request).get();
+//		map.put("userName", userName);
 		return "editProfile";
 	}
 

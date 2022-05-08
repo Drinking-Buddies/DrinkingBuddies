@@ -8,6 +8,22 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	
 	<title>Profile Page</title>
+	<%
+		Cookie[] cookies = null;
+		Cookie myCookie = null;
+		cookies = request.getCookies();
+		boolean login = false;
+		String name = "Guest";
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i++){
+				if (cookies[i].getName().equals("userName")){
+					myCookie = cookies[i];
+					name = cookies[i].getValue();
+					login = true;
+				}
+			}
+		}
+	%>
 </head>
 <body>
 	<div class = "container">
@@ -24,38 +40,55 @@
 				<a href = "/drink">Drink!</a>
 			</div>
 			<div class = "toLogin">
-				<a href = "/login">login / register</a>
+				<%
+					if (!login) {
+						out.println("<a href = '/login'>login / register</a>");
+					} else {
+						out.println("<a href = '/home' onclick = 'LogOut();'>logout</a>");
+					}
+				%>
 			</div>
 		</div>
-
-		<div class="profileUser"><h1>${userName}'s profile</h1></div>
-
-
-
-		<div class="editBlcok">
-			<div id="bioEdit">
-				<form method = "POST">
-					<input type="text" id = "editBio" name="newBio" placeholder="Enter your new bio here..." required>
-					<div id="editBioBut"><button type="submit">Change to new Bio</button></div>
-				</form>
+		<div class="editContent">
+			<div class="profileUser">
+				<h1><%= name%>'s profile</h1>
 			</div>
-
-			<div id="restEdit">
-				<form method = "POST">
-					<input class = "dateSelect" type = "date" name = "birthDate"/>
-					<select name = "gender" class = "selectBox">
-						<option value = "Male">Male</option>
-						<option value = "Female">Female</option>
-					</select>
-					<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" />
-					<input class = "textBox" type = "text" name = "phone" placeholder = "Please enter your phone number" />
-					<input class = "textBox" type = "text" name = "emergency" placeholder = "Please enter your emergency contact" />
-					<button type="submit">Apply</button>
-				</form>
-
+			<br/>
+			<div class="editBlock">
+				<div id="bioEdit">
+					<form method = "POST">
+						<textarea name="newBio">Enter your new bio here...</textarea>
+						<br/>
+						<button id="editBioBut" type="submit">Edit</button>
+					</form>
+				</div>
+	
+				<div id="restEdit">
+					<form method = "POST">
+						<div id="updateSelectors">
+							<input class = "dateSelect" type = "date" name = "birthDate"/>
+							<select name = "gender" class = "selectBox">
+								<option value = "Male">Male</option>
+								<option value = "Female">Female</option>
+							</select>
+						</div>
+						<input class = "textBox" type = "text" name = "weight" placeholder = "Please enter your weight in lbs" />
+						<input class = "textBox" type = "text" name = "phone" placeholder = "Please enter your phone number" />
+						<input class = "textBox" type = "text" name = "emergency" placeholder = "Please enter your emergency contact" />
+						<br/>
+						<button id="applyButton" type="submit">Apply</button>
+					</form>
+	
+				</div>
 			</div>
 		</div>
-
 	</div>
+	<script>
+		function LogOut(){
+			document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+			document.cookie = "userEmail=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+			return true;
+		}
+	</script>
 </body>
 </html>

@@ -8,6 +8,21 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	
 	<title>Profile Page</title>
+	
+	<%
+		Cookie[] cookies = null;
+		cookies = request.getCookies();
+		boolean login = false;
+		String name = "Guest";
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i++){
+				if (cookies[i].getName().equals("userName")){
+					name = cookies[i].getValue();
+					login = true;
+				}
+			}
+		}
+	%>
 </head>
 <body>
 	<div class = "container">
@@ -24,7 +39,13 @@
 				<a href = "/drink">Drink!</a>
 			</div>
 			<div class = "toLogin">
-				<a href = "/login">login / register</a>
+				<%
+					if (!login) {
+						out.println("<a href = '/login'>login / register</a>");
+					} else {
+						out.println("<a href = '/home' onclick = 'LogOut();'>logout</a>");
+					}
+				%>
 			</div>
 		</div>
 
@@ -101,6 +122,14 @@
 		</div>
 
 
-	</div></div>
+	</div>
+	</div>
+	<script>
+		function LogOut(){
+			document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+			document.cookie = "userEmail=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+			return true;
+		}
+	</script>
 </body>
 </html>

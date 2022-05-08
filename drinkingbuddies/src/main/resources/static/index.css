@@ -8,7 +8,6 @@ body{
 
 .container{
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	height: 100%;
 }
@@ -373,10 +372,72 @@ h1 {
 	margin-left: 60px;
 }
 
-.editBlock{
-	margin-left:20px;
-	width:1000px;
-	height: 800px;
+.editContent{
+	margin-left: 20px;
+	white-space: normal;
+	width: 70%;
+	height: auto;
+	min-width: 800px;
+	display: inline-block;
+	text-align: left;
+	overflow: hidden;
 }
+
+.editBlock{
+	width: 100%;
+	height: auto;
+	min-width: 800px;
+	display: inline-block;
+	text-align: left;
+}
+
 #editBio{
+	height: 100px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+textarea {
+  width: 95%;
+  height: 150px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none;
+}
+
+#editBioBut{
+	color: black;
+	border: none;
+	border-radius: 5px;
+	background-color: #FFDD2A;
+	width: 100px;
+	height: 30px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+#bioEdit{
+	margin-left: 10px;
+}
+
+#updateSelectors {
+	margin-left: 10px;
+}
+
+#applyButton{
+	margin-left: 10px;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	background-color: #FFDD2A;
+	width: 100px;
+	height: 30px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 700;
 }
