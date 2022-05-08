@@ -1,12 +1,12 @@
 <%@ page language="java" import = "java.util.*,com.drinkingbuddies.drinkingbuddies.classes.*"
     contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="com.drinkingbuddies.drinkingbuddies.controller.Util.dbUtility" %>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/index.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-	
 	<title>Profile Page</title>
 	
 	<%
@@ -81,44 +81,31 @@
 			<div>
 				<h2>Your Friends: </h2>
 				<div id="friendListBox">
+
 					<%
 						LinkedList<String> friends = (LinkedList<String>) request.getAttribute("friends");
+						if(friends != null && !friends.isEmpty())
+						{
+							for(int i = 0; i < friends.size(); i++) {
+								out.println("<div id=\"friend\"> -  "+(new dbUtility()).getUser(friends.get(i)).getUsername()+
+										"<form method=\"Post\"> <button name =\"removeFriendEmail\" " +
+										"value ="+friends.get(i)+" type = \"submit\" id=\"removeBut\"> REMOVE FRIEND" +
+										"</button></form></div>");
+							}
+						}
 					%>
 				</div>
 			</div>
-
 			<form id = "addFriend" method = "POST">
 				<p id="requestMsg">${msg}
 				</p>
-				<input class = "textBox" type = "text" name = "userEmail" style="color:rgb(50,50,50)" placeholder="Enter your friend's email...">
+				<input class = "textBox" type = "text" name = "receiverEmail" style="color:rgb(50,50,50)" placeholder="Enter your friend's email...">
 				<div id="addFriendButton">
 					<button type = "submit" style="background:none;border:none;font-family: 'Gill Sans', sans-serif;
 					font-size: medium">
 						Send Friend Request</button>
 				</div>
 			</form>
-		</div>
-
-		<div id = "friendsList">
-			<%--
-			<%
-				List<Friend> friendsList;
-				friendsList = (List<Friend>) request.getAttribute("friendsList");
-				if(friendsList != null && !friendsList.isEmpty())
-				{
-					for(int i = 0; i < friendsList.size(); i++)
-					{
-			%>
-				<button>
-					friendsList.get(i).getUsername();
-					friendsList.get(i).getOnlineStatus();
-				</button>
-			<% 
-					}
-				}
-				
-			%>
-			--%>
 		</div>
 
 

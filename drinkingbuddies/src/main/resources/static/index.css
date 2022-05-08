@@ -327,6 +327,7 @@ h1 {
 .friendblock{
 	display: flex;
 	margin-top: 10px;
+	overflow: scroll;
 }
 #friendListBox{
 	border-radius: 6px;
@@ -440,4 +441,25 @@ textarea {
 	margin-bottom: 20px;
 	font-size: 18px;
 	font-weight: 700;
+}
+#friend{
+	display: flex;
+	font-family: "Gill Sans", sans-serif;
+	font-size: medium;
+	margin:8px;
+	padding-top: 3px;
+	padding-left:5px;
+	border-bottom-style: solid;
+	border-color:lightgrey;
+}
+#removeBut{
+	margin-left: 230px;
+	margin-top:2px;
+	margin-bottom: 0px;
+	background-color: rgb(170,170,150);
+	border-radius: 5px;
+	border:none;
+	font-family: "Gill Sans", sans-serif;
+	color:white;
+
 }

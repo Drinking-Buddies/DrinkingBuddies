@@ -50,34 +50,39 @@ public class ProfileController {
 	}
 
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public String profilePage(ModelMap map, @RequestParam(defaultValue = "") String receiverEmail,HttpServletRequest request) {
-		String msg = "";
-		String usrEmail = "";
-		// Use try clause to safely get the current user's email
-		// Use util function to get receiver's email
-		if (request.getCookies() != null) {
-			String userEmail = "";
-			try {
-				userEmail = readCookie("userEmail", request).get();
-			} catch (Exception e) {
-				return "profileRemind";
-			}
-			if (userEmail.equals("")) return "profileRemind";
-			// When we know user's logged in, return to normal profile page.
-			User curUser = util.getUser(userEmail);
-			map.put("userName", curUser.getUsername());
-			map.put("bio", curUser.getBio());
-			map.put("email", curUser.getEmail());
-			map.put("phone", curUser.getPhone());
-			map.put("DOB", curUser.getBirthday());
-			map.put("weight",curUser.getWeight());
-			map.put("gender",curUser.getGender());
-			map.put("emergencyNum",curUser.getEmergency_phone());
-			msg = util.friendRequest(usrEmail, receiverEmail);
+	public String profilePage(ModelMap map, @RequestParam(defaultValue = "") String receiverEmail,
+							  @RequestParam(defaultValue = "") String removeFriendEmail,
+							  HttpServletRequest request) {
+		String userEmail = "";
+		try {
+			userEmail = readCookie("userEmail", request).get();
+		} catch (Exception e) {
+			return "profileRemind";
+		}
+		User curUser = util.getUser(userEmail);
+		map.put("userName", curUser.getUsername());
+		map.put("bio", curUser.getBio());
+		map.put("email", curUser.getEmail());
+		map.put("phone", curUser.getPhone());
+		map.put("DOB", curUser.getBirthday());
+		map.put("weight",curUser.getWeight());
+		map.put("gender",curUser.getGender());
+		map.put("emergencyNum",curUser.getEmergency_phone());
+		if(!removeFriendEmail.equals("")){
+			util.removeFriend(userEmail,removeFriendEmail);
+			LinkedList<String> friends = util.getFriends(curUser.getEmail());
+			request.setAttribute("friends",friends);
+			return "profile";
+		}else{
+			String msg = "";
+			// Use try clause to safely get the current user's email
+			// Use util function to get receiver's email
+			msg = util.friendRequest(userEmail,receiverEmail);
 			map.put("msg", msg);
+			LinkedList<String> friends = util.getFriends(curUser.getEmail());
+			request.setAttribute("friends",friends);
 			return "profile";
 		}
-		return "home";
 	}
 
 	public Optional<String> readCookie(String key, HttpServletRequest request) {

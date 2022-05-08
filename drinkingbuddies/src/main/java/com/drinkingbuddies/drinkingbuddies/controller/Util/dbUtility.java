@@ -456,7 +456,7 @@ public class dbUtility {
 
 			stmt.setString(1, requester);
 			stmt.setString(2, receiver);
-			
+
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
 			System.out.println ("SQLException:" + sqle.getMessage());
@@ -465,7 +465,7 @@ public class dbUtility {
 		return "Request sent successfully.";
 	} 
 	
-	public static void acceptFriend (String requester, String receiver)
+	public void acceptFriend (String requester, String receiver)
 	{
 		try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -475,13 +475,14 @@ public class dbUtility {
         }
 		
 		String sql = "{ CALL AcceptFriend(?, ?) }";
-        
 		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
 			 CallableStatement stmt = conn.prepareCall(sql);) {
 
 			stmt.setString(1, requester);
 			stmt.setString(2, receiver);
-			
+			System.out.println(requester);
+			System.out.println(receiver);
+
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
 			System.out.println ("SQLException: " + sqle.getMessage());
@@ -489,7 +490,7 @@ public class dbUtility {
 		
 	}  
 	
-	public static void removeFriend (String requester, String receiver)
+	public void removeFriend (String requester, String receiver)
 	{ 
 		boolean result = false;
 		
@@ -509,27 +510,24 @@ public class dbUtility {
 	
 				p.setString(1, requester);
 				p.setString(2, receiver);
-				
-				ResultSet rs = p.executeQuery();
-				
-				if (!rs.next()) 
-				{
-					sql = "DELETE FROM Friendships WHERE requester = ? AND receiver = ?"; 
-					try (Connection conn1 = DriverManager.getConnection(DB, DBUserName, DBPassword);
-							PreparedStatement p1 = conn1.prepareStatement(sql);) {
-				
-						p1.setString(1, receiver);
-						p1.setString(2, requester);
-						
-						ResultSet rs1 = p1.executeQuery();
-						
-						if (rs1.next())
-						{
-							return; 
-						}
-					} 
-							
-				}
+				p.executeUpdate();
+//				if (!rs.next())
+//				{
+//					sql = "DELETE FROM Friendships WHERE requester = ? AND receiver = ?";
+//					try (Connection conn1 = DriverManager.getConnection(DB, DBUserName, DBPassword);
+//							PreparedStatement p1 = conn1.prepareStatement(sql);) {
+//
+//						p1.setString(1, receiver);
+//						p1.setString(2, requester);
+//
+//						ResultSet rs1 = p1.executeQuery();
+//						if (rs1.next())
+//						{
+//							return;
+//						}
+//					}
+//
+//				}
 			} 
 			catch (SQLException sqle) {
 				System.out.println ("SQLException: " + sqle.getMessage());
@@ -537,7 +535,29 @@ public class dbUtility {
 		}
 		
 	} 
-	
+
+	public LinkedList<String> getPendingRequests(String email){
+		LinkedList<String> result = new LinkedList<String>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		String sql = "{Call GetPendingFriend(?)}";
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword)){
+			CallableStatement stmt = conn.prepareCall(sql);
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				result.add(rs.getString(1));
+			}
+		}catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+			return null;
+		}
+		return result;
+	}
+
 	public LinkedList<String> getFriends (String email)
 	{
 		LinkedList<String> result = new LinkedList<String>();

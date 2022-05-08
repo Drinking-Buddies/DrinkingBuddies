@@ -71,30 +71,17 @@
 			-->
 			</div>
 			<h2>Friends currently online: </h2>
-			<div id = "friendsList">
-			<!-- 
-				
-				/*
-					List<Friend> friendsList;
-					friendsList = (List<Friend>) request.getAttribute("friendsList");
-					List<user> friendsList;
-					friendsList = (List<user>) request.getAttribute("friendsList");
-					if(friendsList != null && !friendsList.isEmpty())
-					{
-						for(int i = 0; i < friendsList.size(); i++)
-						{
-				*/
-				
-					<button>
-						friendsList.get(i).getUsername();
-						friendsList.get(i).getOnlineStatus();
-					</button>
-				/*
-						}
+
+			<div id="requestDisplay">
+				<%
+					String curRequest = (String) request.getAttribute("curRequest");
+					if(curRequest!=null){
+						out.print("<h3>"+curRequest+" wants to be your friend.</h3>");
+						out.print("<div id=\"acceptFriendButton\">");
+						out.print("<form method=\"Post\"><button type = \"submit\">");
+						out.print("Accept</button></form></div>");
 					}
-				*/
-				
-				-->
+				%>
 			</div>
 		</div>
 	</div>
