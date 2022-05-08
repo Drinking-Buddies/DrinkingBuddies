@@ -333,14 +333,15 @@ h1 {
 	margin-top: 10px;
 }
 #friendListBox{
-	border-radius: 3px;
+	border-radius: 6px;
 	background-color: lightyellow;
 	width: 420px;
-	height: 230px;
-	margin-bottom: 10px;
+	height: 200px;
+	position:absolute;
+	margin-bottom: 20px;
 }
 #addFriend{
-	margin-left: 30px;
+	margin-left: 330px;
 	margin-top: 80px;
 	width: 500px;
 }
@@ -369,4 +370,7 @@ h1 {
 	margin-bottom: 0px;
 	font-size: medium;
 	color: #ff5757;
+}
+.editBlock{
+
 }
