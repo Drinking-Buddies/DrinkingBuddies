@@ -249,21 +249,6 @@ h1 {
 	position: relative;
 }
 
-.table{
-	padding-top: 70px;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
-.user{
-	position: absolute;
-	height:8%;
-	width: 12%;
-	border: 1px solid black;
-	border-radius: 5px;
-}
 #addShot{
 	border-style: none;
 	background-color: #FFA24C;
@@ -295,6 +280,7 @@ h1 {
 	margin-right:5px;
 }
 .greeting{
+	margin-left: 20px;
 	display: flex;
 }
 .editProfileButton{
@@ -349,14 +335,6 @@ h1 {
 	text-align: center;
 	border-radius: 5px;
 	border: none;
-}
-
-#addDrink{
-	margin-top: 30px;
-	border-radius: 4px;
-	width: 180px;
-	text-align: center;
-	background-color: #FFA24C;
 }
 
 #requestMsg{
@@ -534,4 +512,101 @@ textarea {
 .editProfileContent p{
 	margin-left: 10px;
 	font-weight: 600;
+}
+
+/* CSS FOR LOBBY PAGE EXCLUSIVE */
+.dbLogoLobby1{
+	width: 80px;
+	height: auto;
+	margin-bottom: 50px;
+	transform: scaleX(-1) rotate(-20deg);
+}
+
+.dbLogoLobby2{
+	width: 100px;
+	height: auto;
+	margin-bottom: 50px;
+	transform: rotate(-10deg);
+}
+
+.user{
+	display: flex;
+	align-items: center;
+	
+	position: absolute;
+	height:8%;
+	width: 12%;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	vertical-align: middle;
+}
+
+.lobbyPlayer{
+	display: inline-box;
+	position: absolute;
+	width: max-content;
+	font-weight: 700;
+	margin: 0px;
+	margin-left: 10px;
+}
+
+#addDrink{
+	margin-top: 100px;
+	border-radius: 4px;
+	width: 180px;
+	text-align: center;
+	background-color: #FFA24C;
+}
+
+
+.lobbyPlayerDrink{
+	display: inline-box;
+	font-size: 45px;
+	position: absolute;
+	right: 10px;
+	width: max-content;
+	margin: 0px;
+	font-weight: 800;
+}
+
+.table{
+	position: relative;
+	padding-top: 70px;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.table .bacUpper{
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.table .bacLower{
+	position: absolute;
+	top: 62%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.dbLogoTable{
+	width: 50px;
+	height: auto;
+	position: absolute;
+	
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.table .bacRemind{
+	position: absolute;
+	top: 68%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: grey;
 }

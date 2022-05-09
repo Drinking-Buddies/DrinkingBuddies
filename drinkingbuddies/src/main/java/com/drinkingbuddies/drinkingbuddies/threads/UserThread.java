@@ -7,15 +7,18 @@ public class UserThread implements Runnable{
 	private String email;
 	private String lobbyName;
 	private int amountDrinked;
-	private int seatNum;
 	private boolean isFinished = false;
+	private int weight;
+	private int BACValue = 0;
+	private String gender;
 	private dbUtility util;
-	public UserThread(String username, String email, String lobbyName, int amountDrinked, int seatNum) {
+	public UserThread(String username, String email, String lobbyName, int amountDrinked, String gender, int weight) {
 		this.username = username;
 		this.email = email;
 		this.lobbyName = lobbyName;
 		this.amountDrinked = amountDrinked;
-		this.seatNum = seatNum;
+		this.gender = gender;
+		this.weight = weight;
 		util = new dbUtility();
 	}
 	
@@ -31,9 +34,9 @@ public class UserThread implements Runnable{
 		//System.out.println(username+": "+amountDrinked);
 		return amountDrinked;
 	}
-
-	public synchronized int getSeatNum() {
-		return seatNum;
+	
+	public String getEmail() {
+		return email;
 	}
 	
 	// we can change this to more than 1 later

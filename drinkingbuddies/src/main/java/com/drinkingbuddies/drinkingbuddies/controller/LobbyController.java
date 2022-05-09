@@ -1,5 +1,6 @@
 package com.drinkingbuddies.drinkingbuddies.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -55,6 +56,8 @@ public class LobbyController {
     	// Need to check if the user is actually me
     	String myEmail = "Guest";
     	String myUsername = "Guest";
+    	String myGender = "";
+    	int myWeight = 0;
     	
     	Optional<String> tmpUserEmail = readCookie("userEmail",request);
     	if (tmpUserEmail.isPresent()) {
@@ -71,14 +74,16 @@ public class LobbyController {
     		// if it is me
     		if (email.equals(myEmail)) {
     			myUsername = u.getUsername();
+    			myGender = u.getGender();
+    			myWeight = u.getWeight();
     		}else {
-    			UserThread otherPlayer = new UserThread(username, email, lobbyName, 0, seat);
+    			UserThread otherPlayer = new UserThread(username, email, lobbyName, 0, u.getGender(), u.getWeight());
         		allPlayers.add(otherPlayer);
         		seat++;
     		}
     	}
     	if (!myUsername.equals("Guest") && !myEmail.equals("Guest")) {
-    		UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, 0, 1);
+    		UserThread mePlayer = new UserThread(myUsername, myEmail, lobbyName, 0 , myGender, myWeight);
         	allPlayers.add(0, mePlayer);
     	}
     	executeThreads();
@@ -87,16 +92,73 @@ public class LobbyController {
     		canAddShot = false;
     	}
     	// Get amount of drinks
-    	passValue(model);
+    	passValue(model, myEmail, myGender, myWeight);
     }
     
-    private void passValue(ModelMap model) {
+    private void passValue(ModelMap model, String email, String gender, int weight) {
     	String place = "seat";
+    	String drink = "drink";
     	int num = 1;
     	for (UserThread u : allPlayers) {
-    		model.put(place.concat(Integer.toString(num)), u.getAmountDrinked()+" "+u.getUsername());
+    		model.put(place.concat(Integer.toString(num)), u.getUsername());
+    		model.put(drink.concat(Integer.toString(num)), u.getAmountDrinked());
     		num++;
+    		
+    		// For BAC
+    		int amountDrinked = u.getAmountDrinked();
+    		if (u.getEmail().equals(email)) {
+    			double BAC = 0.0; 
+    			DecimalFormat df = new DecimalFormat("0.00");
+    			double alcohol = (double) (amountDrinked * 28.3495);
+    			if (gender.equals("Female"))
+    			{
+    				BAC = (alcohol / (weight * 453.592 * 0.55)) * 100.0; 
+    			}
+    			else 
+    			{
+    				BAC = (alcohol / (weight * 453.592 * 0.68)) * 100.0; 
+    				
+    			}
+    			String drunkMsg = setDrunkMsg(BAC);
+    			model.put("BAC", df.format(BAC).toString());
+    			model.put("drunkMsg", drunkMsg);
+    		}
     	}
+    }
+    
+    private String setDrunkMsg(double BAC) {
+    	String msg = "";
+    	if (BAC <= 0.04) {
+    		msg = "You aren't even drunk yet. Keep up the good work!";
+    	}
+    	else if (BAC > 0.04 && BAC <= 0.06) {
+    		msg = "I bet you are feeling pretty good about yourself now.";
+    	}
+    	else if (BAC > 0.06 && BAC <= 0.10) {
+    		msg = "Can you try walking straight? You will probably fail.";
+    	}
+    	else if (BAC > 0.06 && BAC <= 0.10) {
+    		msg = "Can you try walking straight? You will probably fail.";
+    	}
+    	else if (BAC > 0.10 && BAC <= 0.13) {
+    		msg = "Can you spell out pneumonia? You are pretty drunk.";
+    	}
+    	else if (BAC > 0.13 && BAC <= 0.16) {
+    		msg = "Go find a toilet. Don't throw up on me.";
+    	}
+    	else if (BAC > 0.16 && BAC <= 0.20) {
+    		msg = "You should stop drinking by now. Let's get real...";
+    	}
+    	else if (BAC > 0.20 && BAC <= 0.25) {
+    		msg = "Yo someone needs to carry this one home.";
+    	}
+    	else if (BAC > 0.25 && BAC <= 0.4) {
+    		msg = "Alright, we might need an ambulance";
+    	}
+    	else{
+    		msg = "If you are not just clicking the button for fun, you are probably in the ICU.";
+    	}
+    	return msg;
     }
     
     private void executeThreads() {
