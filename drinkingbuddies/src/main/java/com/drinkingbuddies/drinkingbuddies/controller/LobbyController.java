@@ -90,6 +90,7 @@ public class LobbyController {
     	if (canAddShot) {
     		allPlayers.get(0).addShot();
     		canAddShot = false;
+    		
     	}
     	// Get amount of drinks
     	passValue(model, myEmail, myGender, myWeight);

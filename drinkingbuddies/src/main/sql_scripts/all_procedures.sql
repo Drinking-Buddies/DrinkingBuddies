@@ -112,6 +112,17 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP PROCEDURE if exists FriendRequestExists;
+DELIMITER $$
+CREATE PROCEDURE FriendRequestExists (IN requester VARCHAR(50),
+								IN receiver VARCHAR(50))
+BEGIN
+	SELECT *
+    FROM Friendships f
+    WHERE f.requester = requester and f.receiver = receiver and f.pending = true;
+END$$
+DELIMITER ;
+
 DROP PROCEDURE if exists FriendRequest;
 DELIMITER $$
 CREATE PROCEDURE FriendRequest (IN requester VARCHAR(50),

@@ -467,6 +467,33 @@ public class dbUtility {
 		return "Request sent successfully.";
 	} 
 	
+	
+	public boolean friendRequestExists(String requester, String receiver) {
+		boolean result = false;
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		String sql = "{ CALL FriendRequestExists(?, ?) }";
+		try (Connection conn = DriverManager.getConnection(DB, DBUserName, DBPassword);
+			 CallableStatement stmt = conn.prepareCall(sql);) {
+
+			stmt.setString(1, requester);
+			stmt.setString(2, receiver);
+
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				result = true;
+			}
+		} catch (SQLException sqle) {
+			System.out.println ("SQLException: " + sqle.getMessage());
+		}
+		return result;
+	}
+	
 	public void acceptFriend (String requester, String receiver)
 	{
 		try {

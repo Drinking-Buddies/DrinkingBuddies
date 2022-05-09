@@ -88,19 +88,26 @@ public class ProfileController {
 		// Use try clause to safely get the current user's email
 		// Use util function to get receiver's email
 		LinkedList<String> currentFriends = util.getFriends(userEmail);
-		boolean canAdd = true;
+		boolean alreadyFriends = false;
+		boolean sentRequestAlready = false;
 		for (String f : currentFriends) {
 			if (f.equals(receiverEmail)) {
-				canAdd = false;
+				alreadyFriends = true;
 				break;
 			}
 		}
-		if (canAdd) {
+		
+		sentRequestAlready = util.friendRequestExists(userEmail, receiverEmail);
+		
+		if (!alreadyFriends && !sentRequestAlready) {
 			msg = util.friendRequest(userEmail,receiverEmail);
 			map.put("msg", msg);
-		}else {
+		}else if (alreadyFriends){
 			map.put("msg", "You guys are friends already...");
+		}else if (sentRequestAlready) {
+			map.put("msg", "You already sent the request");
 		}
+		
 		LinkedList<String> friends = util.getFriends(curUser.getEmail());
 		request.setAttribute("friends",friends);
 		return "profile";
