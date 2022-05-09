@@ -33,7 +33,7 @@ public class LoginController {
 		if (util.userExists(email, password)) {
 			User user = util.getUser(email);
 			String userID = user.getUsername();
-			userID.replace(" ", "=");
+			userID = userID.replaceAll("\\s+", "=");
 			Cookie usrName = new Cookie("userName", userID);
 			Cookie usrEmail = new Cookie("userEmail", email);
 			usrName.setMaxAge(3600);
