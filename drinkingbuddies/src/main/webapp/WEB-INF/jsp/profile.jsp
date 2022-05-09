@@ -17,7 +17,7 @@
 		if (cookies != null){
 			for (int i = 0; i < cookies.length; i++){
 				if (cookies[i].getName().equals("userName")){
-					name = cookies[i].getValue();
+					name = cookies[i].getValue().replaceAll("=", " ");
 					login = true;
 				}
 			}

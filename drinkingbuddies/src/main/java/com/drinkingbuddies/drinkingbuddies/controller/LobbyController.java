@@ -36,7 +36,6 @@ public class LobbyController {
 	public String addShot(ModelMap model, HttpServletRequest request) {
 		boolean canAddShot = true;
 		allPlayers.clear();
-		
 		updateValue(model, request, canAddShot);
 		return "redirect:/lobby";
 	}

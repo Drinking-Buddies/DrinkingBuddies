@@ -23,7 +23,7 @@
 			for (int i = 0; i < cookies.length; i++){
 				if (cookies[i].getName().equals("lobbyName")){
 					myCookie = cookies[i];
-					roomName = cookies[i].getValue();
+					roomName = cookies[i].getValue().replaceAll("="," ");
 				}
 				if (cookies[i].getName().equals("userEmail")){
 					userEmail = cookies[i].getValue();
