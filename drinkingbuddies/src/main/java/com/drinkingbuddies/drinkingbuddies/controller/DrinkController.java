@@ -55,13 +55,13 @@ public class DrinkController {
 	        	return "drink";
 	        }else {
 	        	if (!email.isBlank()) {
-		        	util.newEvent(date, hostName);
-		        	util.joinEvent(email, hostName, 0);
-		    
-		        	if (hostName.contains(" ")) {
+	        		if (hostName.contains(" ")) {
 						model.put("errorMsg", "You cannot put space in lobby name");
 						return "drink";
 					}
+	        		
+		        	util.newEvent(date, hostName);
+		        	util.joinEvent(email, hostName, 0);
 		        	
 		        	Cookie lobbyName = new Cookie("lobbyName", hostName);
 		        	lobbyName.setMaxAge(3600);
