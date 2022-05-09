@@ -155,6 +155,9 @@
 					<c:when test="${BAC eq '0.00'}">
 						<h3 class = "bacUpper">No drinks yet. Better get started.</h3>
 					</c:when>
+					<c:when test="${(empty BAC)}">
+						<h3 class = "bacUpper">Login to join</h3>
+					</c:when>
 					<c:otherwise>
 						<h3 class = "bacUpper">Your BAC: ~${BAC}%</h3>
 						<h3 class = "bacLower">${drunkMsg}</h3>
