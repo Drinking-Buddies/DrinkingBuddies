@@ -57,7 +57,7 @@ public class HomeController {
 			
 			// if logged in, pull out the possible friend request.
 			LinkedList<String> allRequests = util.getPendingRequests(email);
-			if(!allRequests.isEmpty()){
+			if(!allRequests.isEmpty() && request != null){
 				request.setAttribute("curRequest", allRequests);
 			}
 		}
