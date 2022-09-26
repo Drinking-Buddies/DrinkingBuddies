@@ -1,5 +1,4 @@
 # DrinkingBuddies
-## The repo for a dumb CS201 project
 **Members:** Quanyong Bi, Eun Cho, Dongwook Choi, Brandon Gong, Ethan Tat, Zhehao Xu
 
 ## Features:
